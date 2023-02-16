@@ -2,6 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Firmovac.DataDefinitions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Firmovac.Pages
 {
@@ -21,7 +26,7 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmy = dBContext.Firms.ToArray();
+                firmy = dBContext.Firms.Include("Obor").Include("Source").ToArray();
             }
         }
 

@@ -11,22 +11,24 @@
     </div>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 
-    <table>
+    <table class="table">
         <tr>
             <th>Název</th>
-            <th>Jméno</th>
             <th>Kontakt</th>
             <th>Obor</th>
             <th>Zdroj</th>
             <th>Pozn.</th>
         </tr>
-        <tr>
-            @foreach (var f in Model.firmy)
-            {
-                <td>f.name</td>
-                <td>f.name</td>
-            }
-        </tr>
+        @foreach (var f in Model.firmy)
+        {
+            <tr>
+                <td>@f.Name</td>
+                <td></td>
+                <td>@f.Obor.Name</td>
+                <td>@f.Source.Name</td>
+                <td>@f.Note</td>
+            </tr>
+        }
     </table>
 
 </div>
