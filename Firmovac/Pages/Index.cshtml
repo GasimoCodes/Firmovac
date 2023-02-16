@@ -7,8 +7,25 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <div class="prihlaseni">
-    <a href="login">Přihlášení</a>
+        <a href="login">Přihlášení</a>
     </div>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <p>@Model.mamRadData()</p>
+
+    <table>
+        <tr>
+            <th>Název</th>
+            <th>Jméno</th>
+            <th>Kontakt</th>
+            <th>Obor</th>
+            <th>Zdroj</th>
+            <th>Pozn.</th>
+        </tr>
+        <tr>
+            @foreach(var f in Model.firmy)
+            {
+                <td>f.name</td>
+            }
+        </tr>
+    </table>
+
 </div>

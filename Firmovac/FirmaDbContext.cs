@@ -57,6 +57,11 @@ namespace Firmovac
                 new FirmaSource{Id = 3, Name="Prac. Nab. z portálu"},
             });
 
+            modelBuilder.Entity<FirmaContact>().HasData(new FirmaContact[] {
+                new FirmaContact{Id = 1, Name="N. Němec",  Email="nemec@spsejecna.cz"},
+                new FirmaContact{Id = 2, Name="Večirka", Phone="777022400"},
+                new FirmaContact{Id = 3, Name="Velký J."},
+            });
 
         }
 
