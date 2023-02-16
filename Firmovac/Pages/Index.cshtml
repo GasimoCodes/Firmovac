@@ -21,8 +21,9 @@
             <th>Pozn.</th>
         </tr>
         <tr>
-            @foreach(var f in Model.firmy)
+            @foreach (var f in Model.firmy)
             {
+                <td>f.name</td>
                 <td>f.name</td>
             }
         </tr>
