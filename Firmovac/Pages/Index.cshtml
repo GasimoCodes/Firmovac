@@ -1,34 +1,40 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Home page";
 }
+<div>
+	<button type="button" class="btn btn-outline-dark">Aktivní</button>
+	<button type="button" class="btn btn-outline-dark">Vymazat vybrané</button>
+	<button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
+	<button type="button" class="btn btn-outline-dark">Přidat firmy</button>
+	<button type="button" class="btn btn-outline-dark">Úprava sloupců</button>
+</div>
+<div>
+	<form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+		<input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+	</form>
+</div>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <div class="prihlaseni">
-        <a href="login">Přihlášení</a>
-    </div>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-
-    <table class="table">
-        <tr>
-            <th>Název</th>
-            <th>Kontakt</th>
-            <th>Obor</th>
-            <th>Zdroj</th>
-            <th>Pozn.</th>
-        </tr>
-        @foreach (var f in Model.firmy)
-        {
-            <tr>
-                <td>@f.Name</td>
-                <td></td>
-                <td>@f.Obor.Name</td>
-                <td>@f.Source.Name</td>
-                <td>@f.Note</td>
-            </tr>
-        }
-    </table>
+	<table class="table">
+		<tr>
+			<th>Název</th>
+			<th>Kontakt</th>
+			<th>Obor</th>
+			<th>Zdroj</th>
+			<th>Pozn.</th>
+		</tr>
+		@foreach (var f in Model.firmy)
+		{
+			<tr>
+				<td>@f.Name</td>
+				<td></td>
+				<td>@f.Obor.Name</td>
+				<td>@f.Source.Name</td>
+				<td>@f.Note</td>
+			</tr>
+		}
+	</table>
 
 </div>
