@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Firmovac.DataDefinitions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Firmovac.Pages
@@ -14,6 +15,22 @@ namespace Firmovac.Pages
 
         public void OnGet()
         {
+
+        }
+
+        public string mamRadData()
+        {
+            string result = "";
+
+            using (FirmaDbContext dBContext = new FirmaDbContext())
+            {
+                foreach(OborDefinition s in dBContext.Obors)
+                {
+                    result += s.Name + " ";
+                }
+            }
+
+            return result;
 
         }
     }
