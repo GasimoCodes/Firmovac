@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Firmovac.DataDefinitions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Firmovac
 {
@@ -32,6 +33,10 @@ namespace Firmovac
         {
         }
 
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
