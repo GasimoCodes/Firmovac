@@ -36,7 +36,9 @@ namespace Firmovac
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=crmskchccz");
+                optionsBuilder.UseMySql("server=localhost;user=root;password=;database=crmskchccz", new MySqlServerVersion(new Version(8, 0, 29))).LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors();
         }
 
 

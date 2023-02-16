@@ -31,7 +31,6 @@ namespace Firmovac.Pages
             }
 
             return result;
-
         }
     }
 }
