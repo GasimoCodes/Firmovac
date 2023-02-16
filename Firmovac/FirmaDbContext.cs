@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
+using Firmovac.DataDefinitions;
 
-namespace Firmovac.DataDefinitions
+namespace Firmovac
 {
     /// <summary>
     /// Entity Framework Database Context for the Firmovac db
@@ -25,16 +26,17 @@ namespace Firmovac.DataDefinitions
         {
         }
 
+
         public FirmaDbContext(DbContextOptions<FirmaDbContext> options)
         : base(options)
         {
         }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*
-            if(!optionsBuilder.IsConfigured)
-            optionsBuilder.UseMySQL(@"Server=(localdb)\mssqllocaldb;Database=SCP");*/
+            if (!optionsBuilder.IsConfigured)
+                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=crmskchccz");
         }
 
 
@@ -45,6 +47,12 @@ namespace Firmovac.DataDefinitions
                 new OborDefinition{Id = 2, Name="ELE"},
                 new OborDefinition{Id = 3, Name="AM"},
                 new OborDefinition{Id = 4, Name="N/A"}
+            });
+
+            modelBuilder.Entity<FirmaSource>().HasData(new FirmaSource[] {
+                new FirmaSource{Id = 1, Name="IT"},
+                new FirmaSource{Id = 2, Name="Praxe žáků"},
+                new FirmaSource{Id = 3, Name="Prac. Nab. z portálu"},
             });
 
 
