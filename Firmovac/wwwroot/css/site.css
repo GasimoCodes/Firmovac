@@ -37,38 +37,38 @@ body {
     margin-bottom: 25px;
 }
 
-    .container .login-email .input-group input {
-        width: 100%;
-        height: 100%;
-        border: 2px solid #e7e7e7;
-        padding: 15px 20px;
-        font-size: 1rem;
-        border-radius: 30px;
-        background: transparent;
-        outline: none;
-        transition: .3s;
-    }
+.container .login-email .input-group input {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #e7e7e7;
+    padding: 15px 20px;
+    font-size: 1rem;
+    border-radius: 30px;
+    background: transparent;
+    outline: none;
+    transition: .3s;
+}
 
-        .container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
-            border-color: #a29bfe;
-        }
+.container .login-email .input-group input:focus, .container .login-email .input-group input:valid {
+    border-color: #a29bfe;
+}
 
-    .container .login-email .input-group .btn {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        text-align: center;
-        border: none;
-        background: #a29bfe;
-        outline: none;
-        border-radius: 30px;
-        font-size: 1.2rem;
-        color: #FFF;
-        cursor: pointer;
-        transition: .3s;
-    }
+.container .login-email .input-group .btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    text-align: center;
+    border: none;
+    background: #a29bfe;
+    outline: none;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    color: #FFF;
+    cursor: pointer;
+    transition: .3s;
+}
 
-        .container .login-email .input-group .btn:hover {
-            transform: translateY(-5px);
-            background: #6c5ce7;
-        }
+.container .login-email .input-group .btn:hover {
+    transform: translateY(-5px);
+    background: #6c5ce7;
+}
