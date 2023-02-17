@@ -16,7 +16,7 @@ namespace Firmovac.DataDefinitions
         /// <summary>
         /// Kontakty firmy
         /// </summary>
-        public FirmaContact[] Contact { get; set; }        
+        public List<FirmaContact> Contact { get; set; }        
         public OborDefinition Obor { get; set; }
         public FirmaSource? Source { get; set; }
         public string? Note { get; set; }
@@ -24,7 +24,7 @@ namespace Firmovac.DataDefinitions
         /// <summary>
         /// Eventy firmy
         /// </summary>
-        FirmaEvent[]? Events { get; set; }
+        List<FirmaEvent>? Events { get; set; }
 
         string? JsonColumns { get; set; }
 

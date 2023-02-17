@@ -26,7 +26,7 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmy = dBContext.Firms.Include("Obor").Include("Source").ToArray();
+                firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).ToArray();
             }
         }
 

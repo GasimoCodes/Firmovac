@@ -1,40 +1,66 @@
 ﻿@page
 @model IndexModel
 @{
-	ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home page";
 }
 <div class="d-flex">
-	<div class="">
-		<button type="button" class="btn btn-outline-dark">Aktivní</button>
-		<button type="button" class="btn btn-outline-dark">Vymazat vybrané</button>
-		<button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
-		<button type="button" class="btn btn-outline-dark">Přidat firmy</button>
-		<button type="button" class="btn btn-outline-dark">Úprava sloupců</button>
-	</div>
-	<form class="ms-auto">
-		<input class="form-control" type="search" placeholder="Search" aria-label="Search">
-	</form>
+    <div class="">
+
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+        <label class="form-check-label" for="inlineCheckbox1">1</label>
+
+        <div class="btn-group" role="group" aria-label="GroupFunctions">
+            <button type="button" class="btn btn-outline-dark">Vymazat vybrané</button>
+            <button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
+        </div>
+
+
+        <button type="button" class="btn btn-outline-dark">Přidat firmy</button>
+        <button type="button" class="btn btn-outline-dark">Úprava sloupců</button>
+    </div>
+    <form class="ms-auto">
+        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+    </form>
 </div>
 
+<br>
+
 <div class="text-left">
-	<table class="table">
-		<tr>
-			<th>Název</th>
-			<th>Kontakt</th>
-			<th>Obor</th>
-			<th>Zdroj</th>
-			<th>Pozn.</th>
-		</tr>
-		@foreach (var f in Model.firmy)
-		{
-			<tr>
-				<td>@f.Name</td>
-				<td></td>
-				<td>@f.Obor.Name</td>
-				<td>@f.Source.Name</td>
-				<td>@f.Note</td>
-			</tr>
-		}
-	</table>
+    <table class="table">
+        <tr>
+            <th>Název</th>
+            <th>Kontakt</th>
+            <th>Obor</th>
+            <th>Zdroj</th>
+            <th>Pozn.</th>
+        </tr>
+        @foreach (var f in Model.firmy)
+        {
+            <tr>
+                <td><p class="font-weight-bold">@f.Name</p></td>
+                <td>
+                    @if (f.Contact != null)
+                        foreach (var kontakt in f.Contact)
+                        {
+
+                            <button class="btn btn-primary rounded-pill" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                @kontakt.Name
+
+                                <div class="collapse" id="collapseExample">
+                                    <div class="card card-body">
+                                        Kontakty
+                                    </div>
+                                </div>
+
+                            </button>
+
+                        }
+                </td>
+                <td>@f.Obor.Name</td>
+                <td>@f.Source.Name</td>
+                <td>@f.Note</td>
+            </tr>
+        }
+    </table>
 
 </div>
