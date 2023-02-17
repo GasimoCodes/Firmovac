@@ -64,22 +64,27 @@
                 </td>
                 <td><p class="font-weight-bold">@f.Name</p></td>
                 <td>
-                    @if (f.Contact != null)
-                        foreach (var kontakt in f.Contact)
-                        {
+                    <div>
+                        @if (f.Contact != null)
+                            foreach (var kontakt in f.Contact)
+                            {
+                                <div class="accordion mt-1" id="accord_contact_@kontakt.Id">
+                                    <div class="accordion-item rounded-4 shadow-sm">
 
-                            <button class="btn btn-primary rounded-pill" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                @kontakt.Name
+                                        <button class="p-2 px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+                                            @kontakt.Name
+                                        </button>
 
-                                <div class="collapse" id="collapseExample">
-                                    <div class="card card-body">
-                                        Kontakty
+                                        <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
+                                            <div class="accordion-body">
+                                                Hello
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
-
-                            </button>
-
-                        }
+                            }
+                    </div>
                 </td>
                 <td>@f.Obor.Name</td>
                 <td>@f.Source.Name</td>
