@@ -72,3 +72,6 @@ body {
     transform: translateY(-5px);
     background: #6c5ce7;
 }
+.rounded-4 {
+    border-radius: 1.3rem !important;
+}
