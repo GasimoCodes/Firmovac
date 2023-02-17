@@ -5,9 +5,6 @@
 }
 <div class="d-flex">
     <div class="">
-        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-        <label class="form-check-label" for="inlineCheckbox1">1</label>
-
         <div class="btn-group" role="group" aria-label="GroupFunctions">
             <button type="button" class="btn btn-outline-danger">Vymazat vybrané</button>
             <button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
@@ -26,6 +23,10 @@
 <div class="text-left">
     <table class="table">
         <tr>
+            <th>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                <label class="form-check-label" for="inlineCheckbox1">1</label>
+            </th>
             <th>Název</th>
             <th>Kontakt</th>
             <th>Obor</th>
@@ -35,6 +36,10 @@
         @foreach (var f in Model.firmy)
         {
             <tr>
+                <td>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">1</label>
+                </td>
                 <td><p class="font-weight-bold">@f.Name</p></td>
                 <td>
                     @if (f.Contact != null)
