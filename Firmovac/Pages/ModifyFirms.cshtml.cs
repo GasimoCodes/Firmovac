@@ -12,12 +12,14 @@ namespace Firmovac.Pages
 {
     public class ModifyFirmsModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<ModifyFirmsModel> _logger;
 
         public Firma[] firmy;
 
+        [BindProperty(SupportsGet = true)]
+        public int FirmId { get; set; }
 
-        public ModifyFirmsModel(ILogger<IndexModel> logger)
+        public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
         {
             _logger = logger;
         }
@@ -28,6 +30,11 @@ namespace Firmovac.Pages
             {
                 firmy = dBContext.Firms.Include("Obor").Include("Source").ToArray();
             }
+        }
+
+        public void OnPost()
+        {
+
         }
 
     }
