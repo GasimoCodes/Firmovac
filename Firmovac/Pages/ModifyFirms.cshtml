@@ -1,10 +1,17 @@
 ﻿@page
-@model IndexModel
+@model ModifyFirmsModel
 @{
     ViewData["Title"] = "Modify";
 }
 
 <div class="text-center">
-    
-
+    <h1>Modifying: @Model.firmy[Model.FirmId - 1].Name</h1>
+    <form method="post">
+        <input type="text" name="nazev" />
+        <input type="text" name="kontakt" />
+        <input type="text" name="obor" />
+        <input type="text" name="zdroj" />
+        <input type="text" name="poznamka" />
+        <input type="submit" value="Submit" />
+    </form>
 </div>
