@@ -75,3 +75,13 @@ body {
 .rounded-4 {
     border-radius: 1.3rem !important;
 }
+
+.responsive-buttons {
+    display: block;
+}
+
+@media (min-width: 1000px) {
+    .responsive-buttons{
+        display: none;
+    }
+}
