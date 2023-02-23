@@ -120,10 +120,12 @@ body {
     }
 }
 
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    background-image: none !important;
+/*arrow from dropdown toggle off*/
+.arrow-off .dropdown-toggle::after {
+    content: none !important;
 }
 
-.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-    background-color: red;
+.p-dropdown-item button {
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
 }
