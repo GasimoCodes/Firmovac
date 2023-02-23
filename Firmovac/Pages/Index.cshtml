@@ -47,11 +47,12 @@
         <tr>
             <th>
                 <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">1</label>
+                <label class="form-check-label" for="inlineCheckbox1"></label>
             </th>
             <th>Název</th>
             <th>Kontakt</th>
             <th>Obor</th>
+            <th>Events</th>
             <th>Zdroj</th>
             <th>Pozn.</th>
         </tr>
@@ -60,9 +61,11 @@
             <tr>
                 <td>
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                    <label class="form-check-label" for="inlineCheckbox1">1</label>
+                    <label class="form-check-label" for="inlineCheckbox1">@(Model.getIncrementFirma())</label>
                 </td>
+                <!-- NAME -->
                 <td><p class="font-weight-bold">@f.Name</p></td>
+                <!-- CONTACT -->
                 <td>
                     <div>
                         @if (f.Contact != null)
@@ -87,6 +90,24 @@
                     </div>
                 </td>
                 <td>@f.Obor.Name</td>
+                
+                <!-- EVENTS -->
+                <td>
+                    <div>
+                        <div class="flex-row">
+                            @if (f.Events != null)
+                                foreach (var firmaEvent in f.Events)
+                                {
+                                    <div class="accordion-item rounded-4 shadow-sm">
+                                        <button class="p-2 px-3 rounded-3 btn bg-transparent shadow-none" type="button" aria-expanded="false">
+                                            @firmaEvent.Name
+                                        </button>
+                                    </div>
+                                }
+                        </div>
+                    </div>
+                </td>
+                
                 <td>@f.Source.Name</td>
                 <td>@f.Note</td>
             </tr>

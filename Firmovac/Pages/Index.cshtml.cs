@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Azure.Core;
 
 namespace Firmovac.Pages
 {
@@ -15,7 +16,7 @@ namespace Firmovac.Pages
         private readonly ILogger<IndexModel> _logger;
 
         public Firma[] firmy;
-
+        public int firmaIndex = 1;
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -26,8 +27,13 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).ToArray();
+                firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Include("Events").ToArray();
             }
+        }
+
+        public int getIncrementFirma()
+        {
+            return firmaIndex++;
         }
 
         public string mamRadData()
