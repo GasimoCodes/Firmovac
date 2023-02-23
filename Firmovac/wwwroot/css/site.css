@@ -76,12 +76,21 @@ body {
     border-radius: 1.3rem !important;
 }
 
-.responsive-buttons {
-    display: block;
+/*rb - responsive buttons */
+@media screen and (max-width: 1000px) {
+    .responsive-buttons1 {
+        display: none !important;
+    }
+    .responsive-buttons2 {
+        display: block !important;
+    }
 }
 
-@media (min-width: 1000px) {
-    .responsive-buttons{
-        display: none;
+@media screen and (min-width: 1000px) {
+    .responsive-buttons1 {
+        display: block !important;
+    }
+    .responsive-buttons2 {
+        display: none !important;
     }
 }
