@@ -3,6 +3,7 @@ using System;
 using Firmovac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Firmovac.Migrations
 {
     [DbContext(typeof(FirmaDbContext))]
-    partial class FirmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230223173326_propertyFix")]
+    partial class propertyFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

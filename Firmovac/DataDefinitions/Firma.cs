@@ -21,12 +21,12 @@ namespace Firmovac.DataDefinitions
         public FirmaSource? Source { get; set; }
         public string? Note { get; set; }
 
-        /// <summary>
-        /// Eventy firmy
-        /// </summary>
-        List<FirmaEvent>? Events { get; set; }
+		/// <summary>
+		/// Eventy firmy
+		/// </summary>
+		public List<FirmaEvent>? Events { get; set; }
 
-        string? JsonColumns { get; set; }
+		public string? JsonColumns { get; set; }
 
     }
 }
