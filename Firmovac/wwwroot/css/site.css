@@ -94,3 +94,28 @@ body {
         display: none !important;
     }
 }
+
+@media screen and (min-width: 1400px) {
+    /*own weigth for search*/
+    .own-w-search {
+        width: 50% !important;
+    }
+
+}
+
+@media screen and (max-width: 1400px) {
+    .own-w-search {
+        width: 45% !important;
+    }
+    /*own padding for search*/
+    .own-p-search {
+        padding-left: auto !important;
+        padding-right: auto !important;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .own-w-search {
+        width: 35% !important;
+    }
+}
