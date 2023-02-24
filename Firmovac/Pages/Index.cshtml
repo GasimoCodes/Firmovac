@@ -48,74 +48,78 @@
 <br>
 
 <div class="text-left table-responsive">
-    <table class="table">
-        <tr>
-            <th>
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1"></label>
-            </th>
-            <th>Název</th>
-            <th>Kontakt</th>
-            <th>Obor</th>
-            <th>Events</th>
-            <th>Zdroj</th>
-            <th>Pozn.</th>
-        </tr>
-        @foreach (var f in Model.firmy)
-        {
+    <table class="table ">
+        <thead>
             <tr>
-                <td>
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox_@(Model.getIncrementFirma())" value="option1">
-                </td>
-                <!-- NAME -->
-                <td><a class="font-weight-bold" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></td>
-                <!-- CONTACT -->
-                <td>
-                    <div>
-                        @if (f.Contact != null)
-                            foreach (var kontakt in f.Contact)
-                            {
-                                <div class="accordion mt-1" id="accord_contact_@kontakt.Id">
-                                    <div class="accordion-item rounded-4 shadow-sm">
-
-                                        <button class="p-2 px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
-                                            @kontakt.Name
-                                        </button>
-
-                                        <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
-                                            <div class="accordion-body">
-                                                Hello
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            }
-                    </div>
-                </td>
-                <td>@f.Obor.Name</td>
-
-                <!-- EVENTS -->
-                <td>
-                    <div>
-                        <div class="flex-row">
-                            @if (f.Events != null)
-                                foreach (var firmaEvent in f.Events)
+                <th>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1"></label>
+                </th>
+                <th>Název</th>
+                <th>Kontakt</th>
+                <th>Obor</th>
+                <th>Events</th>
+                <th>Zdroj</th>
+                <th>Pozn.</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var f in Model.firmy)
+            {
+                <tr>
+                    <td>
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox_@(Model.getIncrementFirma())" value="option1">
+                    </td>
+                    <!-- NAME -->
+                    <td><a class="font-weight-bold" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></td>
+                    <!-- CONTACT -->
+                    <td>
+                        <div>
+                            @if (f.Contact != null)
+                                foreach (var kontakt in f.Contact)
                                 {
-                                    <div class="accordion-item rounded-4 shadow-sm">
-                                        <button class="p-2 px-3 rounded-3 btn bg-transparent shadow-none" type="button" aria-expanded="false">
-                                            @firmaEvent.Name
-                                        </button>
+                                    <div class="accordion mt-1" id="accord_contact_@kontakt.Id">
+                                        <div class="accordion-item rounded-4 shadow-sm">
+
+                                            <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+                                                @kontakt.Name
+                                            </button>
+
+                                            <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
+                                                <div class="accordion-body">
+                                                    Hello
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 }
                         </div>
-                    </div>
-                </td>
+                    </td>
+                    <td>@f.Obor.Name</td>
 
-                <td>@f.Source.Name</td>
-                <td>@f.Note</td>
-            </tr>
-        }
+                    <!-- EVENTS -->
+                    <td>
+                        <div>
+                            <div class="flex-row">
+                                @if (f.Events != null)
+                                    foreach (var firmaEvent in f.Events)
+                                    {
+                                        <div class="accordion-item rounded-4 shadow-sm">
+                                            <button class="own-p-tag px-3 rounded-3 btn bg-transparent shadow-none" type="button" aria-expanded="false">
+                                                @firmaEvent.Name
+                                            </button>
+                                        </div>
+                                    }
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>@f.Source.Name</td>
+                    <td>@f.Note</td>
+                </tr>
+            }
+        </tbody>
     </table>
 
 </div>
