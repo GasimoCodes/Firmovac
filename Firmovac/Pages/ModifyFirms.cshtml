@@ -4,10 +4,32 @@
     ViewData["Title"] = "Modify";
 }
 
-<div class="text-center">
-    <h1>Modifying: @Model.firmy[Model.FirmId - 1].Name</h1>
+<div>
+
+    <h1> @Model.headerText</h1>
+
     <form method="post">
-        <input type="text" name="nazev" />
+
+        <div class="row">
+            <!-- Firma - Detaily -->
+            <div class="col-sm">
+                <div class="form-group">
+                    
+                    <label for="firmaName">Název</label>
+                    <input type="text" class="form-control" id="firmaName" placeholder="Name"
+                           value="@Model.firmaModify.Name">
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        
+
+
         <input type="text" name="kontakt" />
         <input type="text" name="obor" />
         <input type="text" name="zdroj" />

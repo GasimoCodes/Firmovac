@@ -14,10 +14,10 @@ namespace Firmovac.Pages
     {
         private readonly ILogger<ModifyFirmsModel> _logger;
 
-        public Firma[] firmy;
-
         [BindProperty(SupportsGet = true)]
         public int FirmId { get; set; }
+        public Firma firmaModify { get; set; }
+        public string headerText;
 
         public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
         {
@@ -28,7 +28,21 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmy = dBContext.Firms.Include("Obor").Include("Source").ToArray();
+                firmaModify = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Where(x => (x.Id == FirmId)).SingleOrDefault();
+                headerText = "Edit Firmy";
+
+                // If no firma, create new 
+                if (firmaModify == null)
+                {
+                    headerText = "Nová firma";
+
+                    // Firma doesnt exist, create
+                    firmaModify = new Firma()
+                    {
+                        Name = "Nová Firma"
+                        
+                    };
+                }
             }
         }
 
