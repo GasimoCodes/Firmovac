@@ -33,18 +33,23 @@ namespace Firmovac.Pages
 
                 // If no firma, create new 
                 if (firmaModify == null)
-                {
-                    headerText = "Nová firma";
+                    createBlankFirma();
 
-                    // Firma doesnt exist, create
-                    firmaModify = new Firma()
-                    {
-                        Name = "Nová Firma"
-                        
-                    };
-                }
             }
         }
+
+        private void createBlankFirma()
+        {
+            headerText = "Nová firma";
+
+            // Firma doesnt exist, create
+            firmaModify = new Firma()
+            {
+                Name = "Nová Firma",
+                Contact = new List<FirmaContact> { new FirmaContact() {Name="Kontakt", Email="example@mail.com"} },
+            };
+        }
+
 
         public void OnPost()
         {

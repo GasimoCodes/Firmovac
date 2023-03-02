@@ -27,80 +27,59 @@
             <div class="col-sm">
                 <label for="kontaktRow">Kontakt</label>
 
-                            <button type="button" class="btn btn-light float-end p-0">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
+                <button type="button" class="btn btn-light float-end p-0">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
 
-                <div class="card p-3 d-flex flex-wrap gap-3">
+                <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
 
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body form-group">
 
-                            <button type="button" class="btn btn-light float-end p-0">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
+                    @if (Model.firmaModify.Contact != null)
+                        foreach (var kontakt in Model.firmaModify.Contact)
+                        {
 
-                            <label for="kontaktMail">Name</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+                            <div class="accordion mt-1 w-100" id="accord_contact_@kontakt.Id">
+                                <div class="accordion-item rounded-4 shadow-sm p-1">
 
-                            <label for="kontaktMail">Email</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
 
-                            <label for="kontaktMail">Tel</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body form-group">
+                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+                                        <div class="flex-row align-items-center d-inline-flex">
 
-                            <button type="button" class="btn btn-light float-end p-0">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
+                                            <a class="btn">
+                                                <i class="bi bi-x-lg"></i>
+                                            </a>
 
-                            <label for="kontaktMail">Name</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+                                            @kontakt.Name
 
-                            <label for="kontaktMail">Email</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
 
-                            <label for="kontaktMail">Tel</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body form-group">
+                                        </div>
 
-                            <button type="button" class="btn btn-light float-end p-0">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
+                                    </button>
 
-                            <label for="kontaktMail">Name</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
 
-                            <label for="kontaktMail">Email</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+                                    <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
 
-                            <label for="kontaktMail">Tel</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
-                        </div>
-                    </div>
-                                        <div class="card" style="width: 18rem;">
-                        <div class="card-body form-group">
+                                        <label for="kontaktMail">Name</label>
+                                        <input type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Name">
 
-                            <button type="button" class="btn btn-light float-end p-0">
-                                <i class="bi bi-x-lg"></i>
-                            </button>
+                                        <label for="kontaktMail">Email</label>
+                                        <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
 
-                            <label for="kontaktMail">Name</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+                                        <label for="kontaktMail">Tel</label>
+                                        <input type="tel" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Phone">
 
-                            <label for="kontaktMail">Email</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+                                    </div>
 
-                            <label for="kontaktMail">Tel</label>
-                            <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
-                        </div>
-                    </div>
+                                </div>
+                            </div>
+
+
+
+                        }
+
+
+
+
 
 
                 </div>
