@@ -9,5 +9,80 @@
     <h1> @Model.headerText</h1>
 
     <form method="post">
+
+        <div class="row">
+            <div class="col-sm">
+                <label for="kontaktRow">Sloupce</label>
+
+                <button type="button" class="btn btn-light float-end p-0">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+
+                <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
+
+
+                    @if (Model.firmaModify.Contact != null)
+                        foreach (var kontakt in Model.firmaModify.Contact)
+                        {
+
+                            <div class="accordion mt-1 w-100" id="accord_contact_@kontakt.Id">
+                                <div class="accordion-item rounded-4 shadow-sm p-1">
+
+
+                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+                                        <div class="flex-row align-items-center d-inline-flex">
+
+                                            <a class="btn">
+                                                <i class="bi bi-x-lg"></i>
+                                            </a>
+
+                                            @kontakt.Name
+
+
+                                        </div>
+
+                                    </button>
+
+
+                                    <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
+
+                                        <label for="kontaktMail">Name</label>
+                                        <input type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Name">
+
+                                        <label for="kontaktMail">Email</label>
+                                        <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
+
+                                        <label for="kontaktMail">Tel</label>
+                                        <input type="tel" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Phone">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        }
+
+
+
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+        <!--
+            <input type="text" name="kontakt" />
+            <input type="text" name="obor" />
+            <input type="text" name="zdroj" />
+            <input type="text" name="poznamka" />
+            <input type="submit" value="Submit" />
+        -->
+
     </form>
 </div>
