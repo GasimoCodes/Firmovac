@@ -15,9 +15,54 @@
             <div class="col-sm">
                 <div class="form-group">
 
+
+                    <!-- Firma Název -->
                     <label for="firmaName">Název</label>
                     <input type="text" class="form-control" id="firmaName" placeholder="Name"
                            value="@Model.firmaModify.Name">
+
+
+                    <!-- Firma Poznámka -->
+                    <label for="firmaNote">Poznámka</label>
+                    <input type="text" class="form-control" id="firmaNote" placeholder="Pozn"
+                           value="@Model.firmaModify.Note">
+
+
+
+                    <!-- Firma obor -->
+                    <label for="firmaObor">Obor</label>
+                    <select class="form-select" id="firmaObor">
+
+                        @foreach (var Od in Model.OborDefinitions)
+                        {
+                            if (Model.firmaModify.Obor != null && Od.Id == Model.firmaModify.Obor.Id)
+                            {
+                                <option selected>@Od.Name</option>
+                            } else
+                            {
+                                <option>@Od.Name</option>
+                            }
+                        }
+                    </select>
+
+
+                    <!-- Firma obor -->
+                    <label for="firmaZdroj">Zdroj</label>
+                    <select class="form-select" id="firmaZdroj">
+
+                        @foreach (var fS in Model.FirmaSources)
+                        {
+                            if (Model.firmaModify.Source != null && fS.Id == Model.firmaModify.Source.Id)
+                            {
+                                <option selected>@fS.Name</option>
+                            } else
+                            {
+                                <option>@fS.Name</option>
+                            }
+                        }
+                    </select>
+
+
 
                 </div>
             </div>
@@ -83,19 +128,77 @@
 
 
                 </div>
+
+
+
+                <br>
+                <label for="EventyRow">Eventy</label>
+
+                <button type="button" class="btn btn-light float-end p-0">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+
+                <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
+
+
+                    @if (Model.firmaModify.Events != null)
+                        foreach (var eventik in Model.firmaModify.Events)
+                        {
+
+                            <div class="accordion mt-1 w-100" id="accord_event_@eventik.Id">
+                                <div class="accordion-item rounded-4 shadow-sm p-1">
+
+
+                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_event_@eventik.Id" aria-expanded="false" aria-controls="collapseOne">
+                                        <div class="flex-row align-items-center d-inline-flex">
+
+                                            <a class="btn">
+                                                <i class="bi bi-x-lg"></i>
+                                            </a>
+
+                                            @eventik.Name
+
+
+                                        </div>
+
+                                    </button>
+
+
+                                    <div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
+
+                                        <label for="kontaktMail">Name</label>
+                                        <input type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
+
+                                        <label for="kontaktMail">Email</label>
+                                        <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        }
+
+
+
+
+
+
+                </div>
             </div>
 
-        </div>
 
 
 
-        <!--
-            <input type="text" name="kontakt" />
-            <input type="text" name="obor" />
-            <input type="text" name="zdroj" />
-            <input type="text" name="poznamka" />
-            <input type="submit" value="Submit" />
-        -->
 
+            <!--
+                <input type="text" name="kontakt" />
+                <input type="text" name="obor" />
+                <input type="text" name="zdroj" />
+                <input type="text" name="poznamka" />
+                <input type="submit" value="Submit" />
+            -->
     </form>
 </div>

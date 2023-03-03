@@ -10,5 +10,16 @@ namespace Firmovac
             return null;
         }
 
+        public static OborDefinition[] GetDefinitions(FirmaDbContext dBContext)
+        {
+            return dBContext.Obors.ToArray();
+        }
+
+        public static FirmaSource[] GetSources(FirmaDbContext dBContext)
+        {
+            return dBContext.FirmaSources.ToArray();
+        }
+
+
     }
 }

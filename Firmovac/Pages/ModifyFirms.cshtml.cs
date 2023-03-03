@@ -19,6 +19,9 @@ namespace Firmovac.Pages
         public Firma firmaModify { get; set; }
         public string headerText;
 
+        public OborDefinition[] OborDefinitions;
+        public FirmaSource[] FirmaSources;
+
         public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
         {
             _logger = logger;
@@ -34,6 +37,9 @@ namespace Firmovac.Pages
                 // If no firma, create new 
                 if (firmaModify == null)
                     createBlankFirma();
+
+                OborDefinitions = FirmaDBRepository.GetDefinitions(dBContext);
+                FirmaSources = FirmaDBRepository.GetSources(dBContext);
 
             }
         }
