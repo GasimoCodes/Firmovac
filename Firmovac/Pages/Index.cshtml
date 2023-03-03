@@ -8,7 +8,11 @@
     <div class="d-flex">
         <div class="">
             <div class="btn-group" role="group" aria-label="GroupFunctions">
-                <button type="button" class="btn btn-outline-danger">Vymazat vybrané</button>
+                <a type="button" class=" btn btn-outline-danger">
+                    <span data-toggle="modal" data-target="#deleteModal">
+                        Vymazat vybrané
+                    </span>
+                </a>
                 <button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
             </div>
 
@@ -44,6 +48,21 @@
     </div>
 </div>
 
+<div id="deleteModal" class="modal-dialog modal-dialog-scrollable" role="dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+</div>
 
 <br>
 
