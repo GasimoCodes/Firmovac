@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Firmovac.Pages
 {
-    public class PrivacyModel : PageModel
+    public class EventsModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILogger<EventsModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public EventsModel(ILogger<EventsModel> logger)
         {
             _logger = logger;
         }
