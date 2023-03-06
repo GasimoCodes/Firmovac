@@ -31,7 +31,7 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmaModify = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Where(x => (x.Id == FirmId)).SingleOrDefault();
+                firmaModify = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Where(x => (x.Id == FirmId)).Include(p => p.Events).Where(x => (x.Id == FirmId)).SingleOrDefault();
                 headerText = "Edit Firmy";
 
                 // If no firma, create new 
