@@ -18,6 +18,11 @@ namespace Firmovac.Pages
         public Firma[] firmy;
         public int firmaIndex = 1;
 
+
+        [BindProperty(SupportsGet = true)]
+        public string searchQuery { get; set; }
+
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;

@@ -19,16 +19,16 @@
             <a type="button" href="/ModifyFirms?FirmId=0" class="btn btn-outline-dark">Přidat firmy</a>
             <a type="button" href="/ModifyColumn" class="btn btn-outline-dark">Upravit sloupce</a>
         </div>
-        <form class="ms-auto own-w-search">
-            <input class="own-p-search form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
+        <form method="get" class="ms-auto own-w-search">
+            <input name="searchQuery" class="own-p-search form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
         </form>
     </div>
 </div>
 
 <div class="responsive-buttons2">
     <div class="d-flex">
-        <from class="w-100 me-2">
-            <input class="own-p-search-m form-control" type="search" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
+        <from method="get" class="w-100 me-2">
+            <input name="searchQuery" class="own-p-search-m form-control" type="search" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
         </from>
         <div class="btn-group flex-shrink-1 arrow-off">
 
