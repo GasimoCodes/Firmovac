@@ -14,19 +14,71 @@ namespace Firmovac.Pages
     {
         private readonly ILogger<ModifyFirmsModel> _logger;
 
-        [BindProperty(SupportsGet = true)]
-        public int FirmId { get; set; }
         public Firma firmaModify { get; set; }
         public string headerText;
 
         public OborDefinition[] OborDefinitions;
         public FirmaSource[] FirmaSources;
 
+
+        // - GET (+POST)
+        [BindProperty(SupportsGet = true)]
+        public int FirmId { get; set; }
+
+        // - POST
+        [BindProperty]
+        public int firma_source { get; set; }
+        
+        [BindProperty]
+        public string firma_name { get; set; }
+
+        [BindProperty]
+        public string firma_note { get; set; }
+
+        [BindProperty]
+        public int firma_obor { get; set; }
+
+
+
         public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
         {
             _logger = logger;
         }
 
+        // If we savin
+        public void OnPost()
+        {
+
+            using (FirmaDbContext dBContext = new FirmaDbContext())
+            {
+                bool isNew = false;
+
+                firmaModify = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Where(x => (x.Id == FirmId)).Include(p => p.Events).Where(x => (x.Id == FirmId)).SingleOrDefault();
+                headerText = "Edit Firmy";
+                
+                // If no firma, create new 
+                if (firmaModify == null)
+                {
+                    createBlankFirma();
+                    isNew = true;
+                }
+
+                OborDefinitions = FirmaDBRepository.GetDefinitions(dBContext);
+                FirmaSources = FirmaDBRepository.GetSources(dBContext);
+
+                // Assign Firma Data From POST
+                firmaModify.Name = firma_name;
+                firmaModify.Note = firma_note;
+                firmaModify.Source = FirmaSources.Where(x => (x.Id == firma_source)).SingleOrDefault();
+                firmaModify.Obor = OborDefinitions.Where(x => (x.Id == firma_obor)).SingleOrDefault();
+
+                if(isNew)
+                dBContext.Firms.Add(firmaModify);
+                dBContext.SaveChanges();
+            }
+        }
+
+        // If we displayin
         public void OnGet()
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
@@ -52,15 +104,10 @@ namespace Firmovac.Pages
             firmaModify = new Firma()
             {
                 Name = "Nová Firma",
-                Contact = new List<FirmaContact> { new FirmaContact() {Name="Kontakt", Email="example@mail.com"} },
+                Contact = new List<FirmaContact> { new FirmaContact() { Name = "Kontakt", Email = "example@mail.com" } },
             };
         }
 
-
-        public void OnPost()
-        {
-
-        }
 
     }
 }

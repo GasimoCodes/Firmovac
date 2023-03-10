@@ -15,49 +15,53 @@
             <div class="col-sm">
                 <div class="form-group">
 
+                    <!-- Firma ID -->
+                    <input name="FirmId" type="hidden" value="@Model.firmaModify.Id">
 
                     <!-- Firma Název -->
                     <label for="firmaName">Název</label>
-                    <input type="text" class="form-control" id="firmaName" placeholder="Name"
+                    <input name="firma_name" type="text" class="form-control" id="firmaName" placeholder="Name"
                            value="@Model.firmaModify.Name">
 
 
                     <!-- Firma Poznámka -->
                     <label for="firmaNote">Poznámka</label>
-                    <input type="text" class="form-control" id="firmaNote" placeholder="Pozn"
+                    <input name="firma_note" type="text" class="form-control" id="firmaNote" placeholder="Pozn"
                            value="@Model.firmaModify.Note">
 
 
 
                     <!-- Firma obor -->
                     <label for="firmaObor">Obor</label>
-                    <select class="form-select" id="firmaObor">
+                    <select name="firma_obor" class="form-select" id="firmaObor">
 
                         @foreach (var Od in Model.OborDefinitions)
                         {
                             if (Model.firmaModify.Obor != null && Od.Id == Model.firmaModify.Obor.Id)
                             {
-                                <option selected>@Od.Name</option>
-                            } else
+                                <option value="@Od.Id" selected>@Od.Name</option>
+                            }
+                            else
                             {
-                                <option>@Od.Name</option>
+                                <option value="@Od.Id">@Od.Name</option>
                             }
                         }
                     </select>
 
 
-                    <!-- Firma obor -->
+                    <!-- Firma zdroj -->
                     <label for="firmaZdroj">Zdroj</label>
-                    <select class="form-select" id="firmaZdroj">
+                    <select name="firma_source" class="form-select" id="firmaZdroj">
 
                         @foreach (var fS in Model.FirmaSources)
                         {
                             if (Model.firmaModify.Source != null && fS.Id == Model.firmaModify.Source.Id)
                             {
-                                <option selected>@fS.Name</option>
-                            } else
+                                <option value="@fS.Id" selected>@fS.Name</option>
+                            }
+                            else
                             {
-                                <option>@fS.Name</option>
+                                <option value="@fS.Id">@fS.Name</option>
                             }
                         }
                     </select>
@@ -105,13 +109,13 @@
                                     <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
 
                                         <label for="kontaktMail">Name</label>
-                                        <input type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Name">
+                                        <input name="kontakt[@kontakt.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Name">
 
                                         <label for="kontaktMail">Email</label>
-                                        <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
+                                        <input name="kontakt[@kontakt.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
 
                                         <label for="kontaktMail">Tel</label>
-                                        <input type="tel" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Phone">
+                                        <input name="kontakt[@kontakt.Id][2]" type="tel" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Phone">
 
                                     </div>
 
@@ -121,11 +125,6 @@
 
 
                         }
-
-
-
-
-
 
                 </div>
 
@@ -140,7 +139,7 @@
 
                 <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
 
-
+                    <!--
                     @if (Model.firmaModify.Events != null)
                         foreach (var eventik in Model.firmaModify.Events)
                         {
@@ -167,38 +166,26 @@
                                     <div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
 
                                         <label for="kontaktMail">Name</label>
-                                        <input type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
+                                        <input name="event[@eventik.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
 
                                         <label for="kontaktMail">Email</label>
-                                        <input type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
+                                        <input name="event[@eventik.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
 
                                     </div>
 
                                 </div>
                             </div>
 
-
-
                         }
-
-
-
-
-
-
+                        -->
                 </div>
             </div>
 
 
+            <div class="pt-2 flex-row justify-content-end d-flex gap-2">
+                <a href="/" class="btn btn-light">Go back</a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
 
-
-
-            <!--
-                <input type="text" name="kontakt" />
-                <input type="text" name="obor" />
-                <input type="text" name="zdroj" />
-                <input type="text" name="poznamka" />
-                <input type="submit" value="Submit" />
-            -->
     </form>
 </div>
