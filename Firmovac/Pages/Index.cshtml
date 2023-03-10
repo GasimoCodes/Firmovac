@@ -20,7 +20,7 @@
             <a type="button" href="/ModifyColumn" class="btn btn-outline-dark">Upravit sloupce</a>
         </div>
         <form class="ms-auto own-w-search">
-            <input class="own-p-search form-control" type="search" placeholder="Search" aria-label="Search">
+            <input class="own-p-search form-control" type="text" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
         </form>
     </div>
 </div>
@@ -28,7 +28,7 @@
 <div class="responsive-buttons2">
     <div class="d-flex">
         <from class="w-100 me-2">
-            <input class="own-p-search-m form-control" type="search" placeholder="Search" aria-label="Search">
+            <input class="own-p-search-m form-control" type="search" placeholder="Search" aria-label="Search" onkeyup="searchFunction()">
         </from>
         <div class="btn-group flex-shrink-1 arrow-off">
 
@@ -52,21 +52,21 @@
 
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
-        <button type="button" class="btn btn-danger">Upravit</button>
-      </div>
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Smazat vybrané</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
+                <button type="button" class="btn btn-danger">Smazat</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <br>
@@ -87,25 +87,27 @@
                 <th>Pozn.</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="searchTB">
             @foreach (var f in Model.firmy)
             {
                 <tr>
                     <td>
-                        <input class="form-check-input" name="foo" type="checkbox" id="inlineCheckbox_@(Model.getIncrementFirma())" value="option1">
+                        <div class="mt-2">
+                            <input class="form-check-input" name="foo" type="checkbox" id="inlineCheckbox_@(Model.getIncrementFirma())" value="option1">
+                        </div>
                     </td>
                     <!-- NAME -->
-                    <td><a class="font-weight-bold" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></td>
+                    <td><div class="mt-2"><a class="font-weight-bold" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></div></td>
                     <!-- CONTACT -->
                     <td>
                         <div>
                             @if (f.Contact != null)
                                 foreach (var kontakt in f.Contact)
                                 {
-                                    <div class="accordion mt-1" id="accord_contact_@kontakt.Id">
+                                    <div class="accordion mt-1 mb-1" id="accord_contact_@kontakt.Id">
                                         <div class="accordion-item rounded-4 shadow-sm">
 
-                                            <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+                                            <button class="own-p-tag px-3 accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
                                                 @kontakt.Name
                                             </button>
 
@@ -120,27 +122,28 @@
                                 }
                         </div>
                     </td>
-                    <td>@f.Obor.Name</td>
+                    <td><div class="mt-2">@f.Obor.Name</div></td>
 
                     <!-- EVENTS -->
                     <td>
                         <div>
-                            <div class="flex-row">
-                                @if (f.Events != null)
-                                    foreach (var firmaEvent in f.Events)
-                                    {
+                            @if (f.Events != null)
+                                foreach (var firmaEvent in f.Events)
+                                {
+                                    <div class="mt-1 mb-1">
                                         <div class="accordion-item rounded-4 shadow-sm">
                                             <button class="own-p-tag px-3 rounded-3 btn bg-transparent shadow-none" type="button" aria-expanded="false">
                                                 @firmaEvent.Name
                                             </button>
                                         </div>
-                                    }
-                            </div>
+                                    </div>
+
+                                }
                         </div>
                     </td>
 
-                    <td>@f.Source.Name</td>
-                    <td>@f.Note</td>
+                    <td><div class="mt-2">@f.Source.Name</div></td>
+                    <td><div class="mt-2">@f.Note</div></td>
                 </tr>
             }
         </tbody>
