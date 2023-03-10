@@ -8,8 +8,8 @@
     <div class="d-flex">
         <div class="">
             <div class="btn-group" role="group" aria-label="GroupFunctions">
-                <a type="button" class=" btn btn-outline-danger">
-                    <span data-toggle="modal" data-target="#deleteModal">
+                <a type="button" class=" btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <span>
                         Vymazat vybrané
                     </span>
                 </a>
@@ -38,7 +38,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end p-dropdown-item" aria-labelledby="timezoneDropdown">
                 <li><h5 class="dropdown-header">Řádky</h5></li>
-                <li class="alert-danger"><button class="dropdown-item" type="button">Vymazat vybrané</button></li>
+                <li class="alert-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><button class="dropdown-item" type="button">Vymazat vybrané</button></li>
                 <li><button class="dropdown-item" type="button">Exportovat vybrané</button></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/ModifyFirms?FirmId=0" type="button">Přidat firmy</a></li>
@@ -48,20 +48,25 @@
     </div>
 </div>
 
-<div id="deleteModal" class="modal-dialog modal-dialog-scrollable" role="dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Modal Header</h4>
-            </div>
-            <div class="modal-body">
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
+        <button type="button" class="btn btn-danger">Upravit</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <br>
