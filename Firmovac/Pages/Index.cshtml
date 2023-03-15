@@ -113,8 +113,18 @@
 
                                             <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
                                                 <div class="accordion-body">
-                                                    Hello
+                                                    <!-- Contact - Content -->
+                                                    @if (!string.IsNullOrEmpty(kontakt.Email))
+                                                    {
+                                                        <p>@kontakt.Email</p>
+                                                    }
+
+                                                    @if (!string.IsNullOrEmpty(kontakt.Phone))
+                                                    {
+                                                        <p>@kontakt.Phone</p>
+                                                    }
                                                 </div>
+
                                             </div>
 
                                         </div>
