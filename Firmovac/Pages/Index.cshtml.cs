@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Azure.Core;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Firmovac.Pages
 {
@@ -32,7 +33,10 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Include("Events").ToArray();
+                if (searchQuery.IsNullOrEmpty())
+                    firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Include("Events").ToArray();
+                else
+                    firmy = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Include("Events").Where(x => x.Name.Contains(searchQuery)).ToArray();
             }
         }
 
@@ -47,7 +51,7 @@ namespace Firmovac.Pages
 
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                foreach(OborDefinition s in dBContext.Obors)
+                foreach (OborDefinition s in dBContext.Obors)
                 {
                     result += s.Name + " ";
                 }
