@@ -15,8 +15,8 @@ namespace Firmovac.Pages
         private readonly ILogger<ModifyFirmsModel> _logger;
 
         [BindProperty(SupportsGet = true)]
-        public int FirmId { get; set; }
-        public Firma firmaModify { get; set; }
+        public int ColumnId { get; set; }
+        public ColumnDefinition[]  columns { get; set; }
         public string headerText;
 
         public ModifyColumnModel(ILogger<ModifyFirmsModel> logger)
@@ -28,24 +28,28 @@ namespace Firmovac.Pages
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
             {
-                firmaModify = dBContext.Firms.Include("Obor").Include("Source").Include(p => p.Contact).Where(x => (x.Id == FirmId)).SingleOrDefault();
-                headerText = "Edit Firmy";
+                columns = dBContext.ColumnDefinitions.ToArray();
+                headerText = "Edit sloupců";
 
-                // If no firma, create new 
-                if (firmaModify == null)
+                // If no sloupec, create new 
+                if (columns == null)
                 {
-                    headerText = "Úprava sloupců";
 
                     // Firma doesnt exist, create
-                    firmaModify = new Firma()
+                    ColumnDefinition columnModify = new ColumnDefinition()
                     {
-                        Name = "Nová Firma"
+                        Name = "Nový sloupec"
                         
                     };
+
+                    columns = new ColumnDefinition[] { columnModify };
                 }
             }
         }
 
+        /// <summary>
+        /// Save all incoming changes
+        /// </summary>
         public void OnPost()
         {
 

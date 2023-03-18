@@ -38,6 +38,8 @@ namespace Firmovac.Pages
         [BindProperty]
         public int firma_obor { get; set; }
 
+        [BindProperty]
+        public List<FirmaContact> Kontakt { get; set; }
 
 
         public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
@@ -76,6 +78,12 @@ namespace Firmovac.Pages
                 dBContext.Firms.Add(firmaModify);
                 dBContext.SaveChanges();
             }
+
+            Console.WriteLine(Response.Body);
+
+            if (Kontakt.Count > 0)
+                throw (new Exception());
+
         }
 
         // If we displayin
