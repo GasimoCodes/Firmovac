@@ -12,6 +12,7 @@ namespace Firmovac.DataDefinitions
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool isAktivni { get; set; }
 
         /// <summary>
         /// Kontakty firmy
