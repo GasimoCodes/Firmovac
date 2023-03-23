@@ -8,7 +8,7 @@
     <div class="d-flex">
         <div class="">
             <div class="btn-group" role="group" aria-label="GroupFunctions">
-                <a type="button" class=" btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <a type="button" onclick="showSelectedRows()" class=" btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                     <span>
                         Vymazat vybrané
                     </span>
@@ -38,7 +38,7 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end p-dropdown-item" aria-labelledby="timezoneDropdown">
                 <li><h5 class="dropdown-header">Řádky</h5></li>
-                <li class="alert-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><button class="dropdown-item" type="button">Vymazat vybrané</button></li>
+                <li class="alert-danger" onclick="showSelectedRows()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><button class="dropdown-item" type="button">Vymazat vybrané</button></li>
                 <li><button class="dropdown-item" type="button">Exportovat vybrané</button></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/ModifyFirms?FirmId=0" type="button">Přidat firmy</a></li>
@@ -59,7 +59,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                <p>Opravdu chcete smazat následující firmy?</p>
+                <p id="selectedRows"></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zrušit</button>
@@ -91,13 +92,14 @@
             @foreach (var f in Model.firmy)
             {
                 <tr>
+                    <!-- CHECKBOX -->
                     <td>
                         <div class="mt-2">
                             <input class="form-check-input" name="foo" type="checkbox" id="inlineCheckbox_@(Model.getIncrementFirma())" value="option1">
                         </div>
                     </td>
                     <!-- NAME -->
-                    <td><div class="mt-2"><a class="font-weight-bold" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></div></td>
+                    <td><div class="mt-2"><a class="font-weight-bold firm-name" href="/ModifyFirms?FirmId=@f.Id">@f.Name</a></div></td>
                     <!-- CONTACT -->
                     <td>
                         <div>
