@@ -26,7 +26,7 @@ function showSelectedRows() {
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             var name = checkbox.closest('tr').querySelector('.firm-name').textContent;
-            var id = checkbox.closest('tr').querySelector('.firm-name').id;
+            var id = parseInt(checkbox.closest('tr').querySelector('.firm-name').id);
             names.push(name);
             ids.push(id);
         }
@@ -56,15 +56,11 @@ function showSelectedRows() {
 function postDeleteFirm() {
     const xhttp = new XMLHttpRequest();
 
-    length = ids.length;
-    var ids_int = [];
-    for (var i = 0; i < length; i++) {
-        ids_int.push(parseInt(ids[i]));
-    }
 
-    const idsData = JSON.stringify(ids_int);
+
+    const idsData = JSON.stringify(ids);
     console.log(idsData);
-    xhttp.open("POST", "/", true); //zadat adresu postu
+    xhttp.open("POST", "/", true);
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(idsData);
 }
