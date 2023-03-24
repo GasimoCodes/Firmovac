@@ -58,7 +58,9 @@ function postDeleteFirm() {
     xhttp.onload = function () {
         document.getElementById("demo").innerHTML = this.responseText;
     }
-    xhttp.open("POST", ""); // posílátní požadavku na soubor, který se stará o smazání firem
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("ids=" + encodeURIComponent(ids.join(",")));
+
+    const idsData = JSON.stringify(ids);
+    xhttp.open("POST", ""); //zadat adresu postu
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(idsData);
 }
