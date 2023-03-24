@@ -85,8 +85,13 @@ namespace Firmovac.Pages
 
             Console.WriteLine(Response.Body);
 
-            if (Kontakty.Count > 0)
-                throw (new Exception());
+            if (Kontakty != null)
+            {
+                foreach(FirmaContact fC in Kontakty)
+                { 
+                    
+                }
+            }
 
         }
 

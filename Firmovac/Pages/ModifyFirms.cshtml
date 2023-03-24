@@ -119,7 +119,7 @@
                                     <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
 
                                         <!-- Kontakt ID (Set = 0 to Mark a new entry, may otherwise rewrite existing Kontakts) -->
-                                        <input name="FirmId" type="hidden" value="@kontakt.Id">
+                                        <input name="Kontakty[@kontaktArrayOrder].Id" type="hidden" value="@kontakt.Id">
 
                                         <label for="kontaktMail">Name</label>
                                         <input name="Kontakty[@kontaktArrayOrder].Name" type="text" class="form-control" id="kontakt_x_mail" placeholder="Název" value="@kontakt.Name">
