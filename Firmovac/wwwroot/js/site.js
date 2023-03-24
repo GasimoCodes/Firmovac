@@ -17,11 +17,11 @@ var checkboxes = document.querySelectorAll('#searchTB input[type=checkbox]');
 
 // Získání elementu pro zobrazení názvů firem v modálním okně
 var selectedRows = document.querySelector('#selectedRows');
+var ids = [];
 
 // Funkce pro zobrazení názvů firem v modálním okně
 function showSelectedRows() {
     var names = [];
-    var ids = [];
     // Projdeme všechny checkboxy a pokud jsou zaškrtnuté, uložíme název firmy
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -60,7 +60,7 @@ function postDeleteFirm() {
     }
 
     const idsData = JSON.stringify(ids);
-    xhttp.open("POST", ""); //zadat adresu postu
+    xhttp.open("POST", "/index"); //zadat adresu postu
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(idsData);
 }
