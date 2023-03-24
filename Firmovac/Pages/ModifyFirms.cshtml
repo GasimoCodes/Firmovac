@@ -66,6 +66,15 @@
                         }
                     </select>
 
+                    <!-- Firma aktivni -->
+                    <div class="form-check">
+
+                        <input class="form-check-input" asp-for="firma_active">
+  
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Aktivní
+                        </label>
+                    </div>
 
 
                 </div>
@@ -144,37 +153,37 @@
                         foreach (var eventik in Model.firmaModify.Events)
                         {
 
-                            <div class="accordion mt-1 w-100" id="accord_event_@eventik.Id">
-                                <div class="accordion-item rounded-4 shadow-sm p-1">
+                                                                    <div class="accordion mt-1 w-100" id="accord_event_@eventik.Id">
+                                                                        <div class="accordion-item rounded-4 shadow-sm p-1">
 
 
-                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_event_@eventik.Id" aria-expanded="false" aria-controls="collapseOne">
-                                        <div class="flex-row align-items-center d-inline-flex">
+                                                                            <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_event_@eventik.Id" aria-expanded="false" aria-controls="collapseOne">
+                                                                                <div class="flex-row align-items-center d-inline-flex">
 
-                                            <a class="btn">
-                                                <i class="bi bi-x-lg"></i>
-                                            </a>
+                                                                                    <a class="btn">
+                                                                                        <i class="bi bi-x-lg"></i>
+                                                                                    </a>
 
                                             @eventik.Name
 
 
-                                        </div>
+                                                                                </div>
 
-                                    </button>
+                                                                            </button>
 
 
-                                    <div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
+                                                                            <div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
 
-                                        <label for="kontaktMail">Name</label>
-                                        <input name="event[@eventik.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
+                                                                                <label for="kontaktMail">Name</label>
+                                                                                <input name="event[@eventik.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
 
-                                        <label for="kontaktMail">Email</label>
-                                        <input name="event[@eventik.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
+                                                                                <label for="kontaktMail">Email</label>
+                                                                                <input name="event[@eventik.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
 
-                                    </div>
+                                                                            </div>
 
-                                </div>
-                            </div>
+                                                                        </div>
+                                                                    </div>
 
                         }
                         -->

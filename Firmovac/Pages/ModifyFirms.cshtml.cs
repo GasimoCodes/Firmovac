@@ -41,6 +41,9 @@ namespace Firmovac.Pages
         [BindProperty]
         public List<FirmaContact> Kontakt { get; set; }
 
+        [BindProperty]
+        public bool firma_active { get; set; }
+
 
         public ModifyFirmsModel(ILogger<ModifyFirmsModel> logger)
         {
@@ -73,6 +76,7 @@ namespace Firmovac.Pages
                 firmaModify.Note = firma_note;
                 firmaModify.Source = FirmaSources.Where(x => (x.Id == firma_source)).SingleOrDefault();
                 firmaModify.Obor = OborDefinitions.Where(x => (x.Id == firma_obor)).SingleOrDefault();
+                firmaModify.isAktivni = firma_active;
 
                 if(isNew)
                 dBContext.Firms.Add(firmaModify);
@@ -101,6 +105,8 @@ namespace Firmovac.Pages
                 OborDefinitions = FirmaDBRepository.GetDefinitions(dBContext);
                 FirmaSources = FirmaDBRepository.GetSources(dBContext);
 
+                firma_active = firmaModify.isAktivni;
+
             }
         }
 
@@ -113,6 +119,7 @@ namespace Firmovac.Pages
             {
                 Name = "Nová Firma",
                 Contact = new List<FirmaContact> { new FirmaContact() { Name = "Kontakt", Email = "example@mail.com" } },
+                isAktivni = true,
             };
         }
 
