@@ -7,9 +7,11 @@ namespace Firmovac.Pages
     public class EventsModel : PageModel
     {
         private readonly ILogger<EventsModel> _logger;
-        
-        public FirmaEvent[] FirmaSources;
 
+        public FirmaEvent[] firmaEventy;
+
+        [BindProperty(SupportsGet = true)]
+        public bool showOldEvents { get; set; }
 
         public EventsModel(ILogger<EventsModel> logger)
         {
@@ -19,6 +21,16 @@ namespace Firmovac.Pages
         public void OnGet()
         {
             // Ziskat list eventu
+            using (FirmaDbContext dBContext = new FirmaDbContext())
+            {
+
+                if (showOldEvents)
+                    firmaEventy = dBContext.FirmaEvents.OrderByDescending(x => x.EventDate).ToArray();
+                else
+                    firmaEventy = dBContext.FirmaEvents.Where(x => x.EventDate >= System.DateTime.Now).OrderByDescending(x => x.EventDate).ToArray();
+
+
+            }
 
         }
     }
