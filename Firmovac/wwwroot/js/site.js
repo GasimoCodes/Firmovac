@@ -55,12 +55,16 @@ function showSelectedRows() {
 //AJAX pro POST smazání firem
 function postDeleteFirm() {
     const xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        document.getElementById("demo").innerHTML = this.responseText;
+
+    length = ids.length;
+    var ids_int = [];
+    for (var i = 0; i < length; i++) {
+        ids_int.push(parseInt(ids[i]));
     }
 
-    const idsData = JSON.stringify(ids);
-    xhttp.open("POST", "/index"); //zadat adresu postu
+    const idsData = JSON.stringify(ids_int);
+    console.log(idsData);
+    xhttp.open("POST", "/", true); //zadat adresu postu
     xhttp.setRequestHeader("Content-type", "application/json");
     xhttp.send(idsData);
 }
