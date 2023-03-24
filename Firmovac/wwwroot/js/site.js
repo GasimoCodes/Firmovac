@@ -21,11 +21,14 @@ var selectedRows = document.querySelector('#selectedRows');
 // Funkce pro zobrazení názvů firem v modálním okně
 function showSelectedRows() {
     var names = [];
+    var ids = [];
     // Projdeme všechny checkboxy a pokud jsou zaškrtnuté, uložíme název firmy
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             var name = checkbox.closest('tr').querySelector('.firm-name').textContent;
+            var id = checkbox.closest('tr').querySelector('.firm-name').id;
             names.push(name);
+            ids.push(id);
         }
     });
 
@@ -49,3 +52,15 @@ function showSelectedRows() {
 }
 
 
+//AJAX pro POST smazání firem
+function postDeleteFirm() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        document.getElementById("demo").innerHTML = this.responseText;
+    }
+
+    const idsData = JSON.stringify(ids);
+    xhttp.open("POST", ""); //zadat adresu postu
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(idsData);
+}
