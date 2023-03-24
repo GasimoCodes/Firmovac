@@ -17,6 +17,7 @@ var checkboxes = document.querySelectorAll('#searchTB input[type=checkbox]');
 
 // Získání elementu pro zobrazení názvů firem v modálním okně
 var selectedRows = document.querySelector('#selectedRows');
+var ids = [];
 
 // Funkce pro zobrazení názvů firem v modálním okně
 function showSelectedRows() {
@@ -25,7 +26,9 @@ function showSelectedRows() {
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             var name = checkbox.closest('tr').querySelector('.firm-name').textContent;
+            var id = checkbox.closest('tr').querySelector('.firm-name').id;
             names.push(name);
+            ids.push(id);
         }
     });
 
@@ -49,3 +52,19 @@ function showSelectedRows() {
 }
 
 
+//AJAX pro POST smazání firem
+function postDeleteFirm() {
+    const xhttp = new XMLHttpRequest();
+
+    length = ids.length;
+    var ids_int = [];
+    for (var i = 0; i < length; i++) {
+        ids_int.push(parseInt(ids[i]));
+    }
+
+    const idsData = JSON.stringify(ids_int);
+    console.log(idsData);
+    xhttp.open("POST", "/", true); //zadat adresu postu
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send(idsData);
+}

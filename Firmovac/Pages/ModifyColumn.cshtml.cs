@@ -34,14 +34,10 @@ namespace Firmovac.Pages
                 // If no sloupec, create new 
                 if (columns == null)
                 {
-
-                    // Firma doesnt exist, create
                     ColumnDefinition columnModify = new ColumnDefinition()
                     {
-                        Name = "Nový sloupec"
-                        
+                        Name = "Nový sloupec"       
                     };
-
                     columns = new ColumnDefinition[] { columnModify };
                 }
             }
