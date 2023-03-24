@@ -39,7 +39,7 @@ namespace Firmovac.Pages
         public int firma_obor { get; set; }
 
         [BindProperty]
-        public List<FirmaContact> Kontakt { get; set; }
+        public List<FirmaContact> Kontakty { get; set; }
 
         [BindProperty]
         public bool firma_active { get; set; }
@@ -85,7 +85,7 @@ namespace Firmovac.Pages
 
             Console.WriteLine(Response.Body);
 
-            if (Kontakt.Count > 0)
+            if (Kontakty.Count > 0)
                 throw (new Exception());
 
         }
