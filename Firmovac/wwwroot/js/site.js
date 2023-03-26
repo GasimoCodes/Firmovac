@@ -44,7 +44,7 @@ function showSelectedRows() {
     if (names.length > 0) {
         for (let i = 0; i < names.length; i++) {
             const tag = document.createElement('span');
-            tag.classList.add('badge','rounded-pill','bg-dark','p-3', 'm-1');
+            tag.classList.add('badge', 'rounded-pill', 'bg-dark', 'p-3', 'm-1');
             tag.textContent = names[i];
             selectedRows.appendChild(tag);
         }
@@ -55,12 +55,12 @@ function showSelectedRows() {
 //AJAX pro POST smazání firem
 function postDeleteFirm() {
     const xhttp = new XMLHttpRequest();
-
-
-
     const idsData = JSON.stringify(ids);
     console.log(idsData);
     xhttp.open("POST", "/", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send(idsData);
+    if (ids.length > 0) {
+        xhttp.send(idsData);
+    }
+    ids.length = 0;
 }
