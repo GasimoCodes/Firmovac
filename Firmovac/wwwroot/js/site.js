@@ -11,14 +11,11 @@ function toggle(source) {
     }
 }
 
-
 // Získání checkboxů v tabulce
 var checkboxes = document.querySelectorAll('#searchTB input[type=checkbox]');
-
 // Získání elementu pro zobrazení názvů firem v modálním okně
 var selectedRows = document.querySelector('#selectedRows');
 var ids = [];
-
 // Funkce pro zobrazení názvů firem v modálním okně
 function showSelectedRows() {
     var names = [];
@@ -31,15 +28,12 @@ function showSelectedRows() {
             ids.push(id);
         }
     });
-
     // Zobrazíme názvy firem v modálním okně
     const selectedRows = document.querySelector('#selectedRows');
-
     // Odstraníme všechny děti elementu selectedRows
     while (selectedRows.firstChild) {
         selectedRows.removeChild(selectedRows.firstChild);
     }
-
     // Pokud jsou nějaké vybrané řádky, zobrazíme je jako tagy
     if (names.length > 0) {
         for (let i = 0; i < names.length; i++) {
