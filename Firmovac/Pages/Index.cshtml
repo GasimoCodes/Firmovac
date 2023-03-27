@@ -13,7 +13,7 @@
                         Vymazat vybrané
                     </span>
                 </a>
-                <button type="button" class="btn btn-outline-dark">Exportovat vybrané</button>
+                <button type="button" onclick="postIdFirm()" class="btn btn-outline-dark">Exportovat vybrané</button>
             </div>
 
             <a type="button" href="/ModifyFirms?FirmId=0" class="btn btn-outline-dark">Přidat firmy</a>
@@ -39,7 +39,7 @@
             <ul class="dropdown-menu dropdown-menu-end p-dropdown-item" aria-labelledby="timezoneDropdown">
                 <li><h5 class="dropdown-header">Řádky</h5></li>
                 <li class="alert-danger" onclick="showSelectedRows()" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><button class="dropdown-item" type="button">Vymazat vybrané</button></li>
-                <li><button class="dropdown-item" type="button">Exportovat vybrané</button></li>
+                <li><button class="dropdown-item" onclick="postIdFirm()" type="button">Exportovat vybrané</button></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="/ModifyFirms?FirmId=0" type="button">Přidat firmy</a></li>
                 <li><a class="dropdown-item" href="/ModifyColumn" type="button">Úprava sloupců</a></li>

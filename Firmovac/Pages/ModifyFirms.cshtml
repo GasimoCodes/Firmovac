@@ -1,204 +1,196 @@
 ﻿@page
 @model ModifyFirmsModel
 @{
-    ViewData["Title"] = "Modify";
+	ViewData["Title"] = "Modify";
 }
 
 <div>
 
-    <h1> @Model.headerText</h1>
+	<h1> @Model.headerText</h1>
 
-    <form method="post">
+	<form method="post">
 
-        <div class="row">
-            <!-- Firma - Detaily -->
-            <div class="col-sm">
-                <div class="form-group">
+		<div class="row">
+			<!-- Firma - Detaily -->
+			<div class="col-sm">
+				<div class="form-group">
 
-                    <!-- Firma ID -->
-                    <input name="FirmId" type="hidden" value="@Model.firmaModify.Id">
+					<!-- Firma ID -->
+					<input name="FirmId" type="hidden" value="@Model.firmaModify.Id">
 
-                    <!-- Firma Název -->
-                    <label for="firmaName">Název</label>
-                    <input name="firma_name" type="text" class="form-control" id="firmaName" placeholder="Name"
-                           value="@Model.firmaModify.Name">
+					<!-- Firma Název -->
+					<label for="firmaName">Název</label>
+					<input name="firma_name" type="text" class="form-control" id="firmaName" placeholder="Name"
+						   value="@Model.firmaModify.Name">
 
 
-                    <!-- Firma Poznámka -->
-                    <label for="firmaNote">Poznámka</label>
-                    <input name="firma_note" type="text" class="form-control" id="firmaNote" placeholder="Pozn"
-                           value="@Model.firmaModify.Note">
+					<!-- Firma Poznámka -->
+					<label for="firmaNote">Poznámka</label>
+					<input name="firma_note" type="text" class="form-control" id="firmaNote" placeholder="Pozn"
+						   value="@Model.firmaModify.Note">
 
 
 
-                    <!-- Firma obor -->
-                    <label for="firmaObor">Obor</label>
-                    <select name="firma_obor" class="form-select" id="firmaObor">
+					<!-- Firma obor -->
+					<label for="firmaObor">Obor</label>
+					<select name="firma_obor" class="form-select" id="firmaObor">
 
-                        @foreach (var Od in Model.OborDefinitions)
-                        {
-                            if (Model.firmaModify.Obor != null && Od.Id == Model.firmaModify.Obor.Id)
-                            {
-                                <option value="@Od.Id" selected>@Od.Name</option>
-                            }
-                            else
-                            {
-                                <option value="@Od.Id">@Od.Name</option>
-                            }
-                        }
-                    </select>
+						@foreach (var Od in Model.OborDefinitions)
+						{
+							if (Model.firmaModify.Obor != null && Od.Id == Model.firmaModify.Obor.Id)
+							{
+								<option value="@Od.Id" selected>@Od.Name</option>
+							}
+							else
+							{
+								<option value="@Od.Id">@Od.Name</option>
+							}
+						}
+					</select>
 
 
-                    <!-- Firma zdroj -->
-                    <label for="firmaZdroj">Zdroj</label>
-                    <select name="firma_source" class="form-select" id="firmaZdroj">
+					<!-- Firma zdroj -->
+					<label for="firmaZdroj">Zdroj</label>
+					<select name="firma_source" class="form-select" id="firmaZdroj">
 
-                        @foreach (var fS in Model.FirmaSources)
-                        {
-                            if (Model.firmaModify.Source != null && fS.Id == Model.firmaModify.Source.Id)
-                            {
-                                <option value="@fS.Id" selected>@fS.Name</option>
-                            }
-                            else
-                            {
-                                <option value="@fS.Id">@fS.Name</option>
-                            }
-                        }
-                    </select>
+						@foreach (var fS in Model.FirmaSources)
+						{
+							if (Model.firmaModify.Source != null && fS.Id == Model.firmaModify.Source.Id)
+							{
+								<option value="@fS.Id" selected>@fS.Name</option>
+							}
+							else
+							{
+								<option value="@fS.Id">@fS.Name</option>
+							}
+						}
+					</select>
 
-                    <!-- Firma aktivni -->
-                    <div class="form-check">
+					<!-- Firma aktivni -->
+					<div class="form-check">
 
-                        <input class="form-check-input" asp-for="firma_active">
+						<input class="form-check-input" asp-for="firma_active">
 
-                        <label class="form-check-label" for="flexCheckChecked">
-                            Aktivní
-                        </label>
-                    </div>
+						<label class="form-check-label" for="flexCheckChecked">
+							Aktivní
+						</label>
+					</div>
 
 
-                </div>
-            </div>
+				</div>
+			</div>
 
 
-            <!-- Firma -Kontakt / Eventy -->
-            <div class="col-sm">
-                <label for="kontaktRow">Kontakt</label>
+			<!-- Firma -Kontakt / Eventy -->
+			<div class="col-sm">
+				<label for="kontaktRow">Kontakt</label>
 
-                <button type="button" class="btn btn-light float-end p-0">
-                    <i class="bi bi-plus-lg"></i>
-                </button>
+				<button type="button" class="btn btn-light float-end p-0">
+					<i class="bi bi-plus-lg"></i>
+				</button>
 
-                <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
+				<div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
 
+					@if (Model.firmaModify.Contact != null)
+						foreach (var kontakt in Model.firmaModify.Contact)
+						{
+							int kontaktArrayOrder = 0;
 
-                    @if (Model.firmaModify.Contact != null)
-                        foreach (var kontakt in Model.firmaModify.Contact)
-                        {
-                            int kontaktArrayOrder = 0;
+							<div class="accordion mt-1 w-100" id="accord_contact_@kontakt.Id">
+								<div class="accordion-item rounded-4 shadow-sm p-1">
 
-                            <div class="accordion mt-1 w-100" id="accord_contact_@kontakt.Id">
-                                <div class="accordion-item rounded-4 shadow-sm p-1">
+									<button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
+										<div class="flex-row align-items-center d-inline-flex">
 
+											<a class="btn">
+												<i class="bi bi-x-lg"></i>
+											</a>
 
-                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
-                                        <div class="flex-row align-items-center d-inline-flex">
+											@kontakt.Name
 
-                                            <a class="btn">
-                                                <i class="bi bi-x-lg"></i>
-                                            </a>
 
-                                            @kontakt.Name
+										</div>
+									</button>
 
+									<div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
 
-                                        </div>
+										<!-- Kontakt ID (Set = 0 to Mark a new entry, may otherwise rewrite existing Kontakts) -->
+										<input name="Kontakty[@kontaktArrayOrder].Id" type="hidden" value="@kontakt.Id">
 
-                                    </button>
+										<label for="kontaktMail">Name</label>
+										<input name="Kontakty[@kontaktArrayOrder].Name" type="text" class="form-control" id="kontakt_x_mail" placeholder="Název" value="@kontakt.Name">
 
+										<label for="kontaktMail">Email</label>
+										<input name="Kontakty[@kontaktArrayOrder].Email" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
 
-                                    <div id="accord_contactItem_@kontakt.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_@kontakt.Id">
+										<label for="kontaktMail">Tel</label>
+										<input name="Kontakty[@kontaktArrayOrder].Phone" type="tel" class="form-control" id="kontakt_x_mail" placeholder="Tel" value="@kontakt.Phone">
 
-                                        <!-- Kontakt ID (Set = 0 to Mark a new entry, may otherwise rewrite existing Kontakts) -->
-                                        <input name="Kontakty[@kontaktArrayOrder].Id" type="hidden" value="@kontakt.Id">
+									</div>
 
-                                        <label for="kontaktMail">Name</label>
-                                        <input name="Kontakty[@kontaktArrayOrder].Name" type="text" class="form-control" id="kontakt_x_mail" placeholder="Název" value="@kontakt.Name">
+								</div>
+							</div>
 
-                                        <label for="kontaktMail">Email</label>
-                                        <input name="Kontakty[@kontaktArrayOrder].Email" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@kontakt.Email">
+						}
 
-                                        <label for="kontaktMail">Tel</label>
-                                        <input name="Kontakty[@kontaktArrayOrder].Phone" type="tel" class="form-control" id="kontakt_x_mail" placeholder="Tel" value="@kontakt.Phone">
+				</div>
 
-                                    </div>
+				<br>
+				<label for="EventyRow">Eventy</label>
 
-                                </div>
-                            </div>
+				<button type="button" class="btn btn-light float-end p-0">
+					<i class="bi bi-plus-lg"></i>
+				</button>
 
+				<div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
 
+					<!--
+					@if (Model.firmaModify.Events != null)
+						foreach (var eventik in Model.firmaModify.Events)
+						{
 
-                        }
+																					<div class="accordion mt-1 w-100" id="accord_event_@eventik.Id">
+																						<div class="accordion-item rounded-4 shadow-sm p-1">
 
-                </div>
 
+																							<button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_event_@eventik.Id" aria-expanded="false" aria-controls="collapseOne">
+																								<div class="flex-row align-items-center d-inline-flex">
 
+																									<a class="btn">
+																										<i class="bi bi-x-lg"></i>
+																									</a>
 
-                <br>
-                <label for="EventyRow">Eventy</label>
+											@eventik.Name
 
-                <button type="button" class="btn btn-light float-end p-0">
-                    <i class="bi bi-plus-lg"></i>
-                </button>
 
-                <div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
+																								</div>
 
-                    <!--
-                    @if (Model.firmaModify.Events != null)
-                        foreach (var eventik in Model.firmaModify.Events)
-                        {
+																							</button>
 
-                                                                            <div class="accordion mt-1 w-100" id="accord_event_@eventik.Id">
-                                                                                <div class="accordion-item rounded-4 shadow-sm p-1">
 
+																							<div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
 
-                                                                                    <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_event_@eventik.Id" aria-expanded="false" aria-controls="collapseOne">
-                                                                                        <div class="flex-row align-items-center d-inline-flex">
+																								<label for="kontaktMail">Name</label>
+																								<input name="event[@eventik.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
 
-                                                                                            <a class="btn">
-                                                                                                <i class="bi bi-x-lg"></i>
-                                                                                            </a>
+																								<label for="kontaktMail">Email</label>
+																								<input name="event[@eventik.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
 
-                                            @eventik.Name
+																							</div>
 
+																						</div>
+																					</div>
 
-                                                                                        </div>
+						}
+						-->
+				</div>
+			</div>
 
-                                                                                    </button>
 
+			<div class="pt-2 flex-row justify-content-end d-flex gap-2">
+				<a href="/" class="btn btn-light">Go back</a>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
 
-                                                                                    <div id="accord_eventItem_@eventik.Id" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_event_@eventik.Id">
-
-                                                                                        <label for="kontaktMail">Name</label>
-                                                                                        <input name="event[@eventik.Id][0]" type="text" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.Name">
-
-                                                                                        <label for="kontaktMail">Email</label>
-                                                                                        <input name="event[@eventik.Id][1]" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email" value="@eventik.EventDate">
-
-                                                                                    </div>
-
-                                                                                </div>
-                                                                            </div>
-
-                        }
-                        -->
-                </div>
-            </div>
-
-
-            <div class="pt-2 flex-row justify-content-end d-flex gap-2">
-                <a href="/" class="btn btn-light">Go back</a>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-
-    </form>
+	</form>
 </div>
