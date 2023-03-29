@@ -8,6 +8,10 @@ using System.Runtime.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Azure.Core;
 using Microsoft.IdentityModel.Tokens;
+using CsvHelper;
+using System.Globalization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Firmovac.Pages
 {
@@ -25,8 +29,6 @@ namespace Firmovac.Pages
         [BindProperty]
         public int[] listRemoveFirm { get; set; }
 
-        [BindProperty]
-        public int[] listPrintFirm { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -64,27 +66,34 @@ namespace Firmovac.Pages
             return result;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        [HttpPost]
-        public void OnPost()
-        {
-            using (FirmaDbContext dBContext = new FirmaDbContext())
-            {
-                // If we received a remove request, remove all Firms with IDs based on listRemoveFirm
-                if (listRemoveFirm != null)
-                {
-                    dBContext.Firms.Where(c => (listRemoveFirm.Contains(c.Id))).ExecuteDelete();
-                }
 
-                // If we received a remove request, remove all Firms with IDs based on listRemoveFirm
-                if (listPrintFirm != null)
+        [HttpPost]
+        public void OnPost([FromBody] Object data)
+        {
+            // Access the parameters here
+            if (data != null)
+            {
+                JObject jO = JObject.Parse(data.ToString());
+
+                int[] firmsIds = jO["listPrintFirm"].ToObject<int[]>();
+                int command = jO["command"].ToObject<int>();
+
+                switch(command)
                 {
-                    dBContext.Firms.Where(c => (listRemoveFirm.Contains(c.Id))).ExecuteDelete();
+                    // Display CSV
+                    case 0:
+                        {
+                            break;
+                        }
+                    // Delete
+                    case 1:
+                        {
+                            break;
+                        }
                 }
 
             }
+
         }
     }
 }

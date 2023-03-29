@@ -62,35 +62,37 @@ function postDeleteFirm() {
 //AJAX POST ID firms
 function postIdFirm() {
 
+    var firmyIds = [];
+
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
-            var id = parseInt(checkbox.closest('tr').querySelector('.firm-name').id);
-            ids.push(id);
+            var firmId = parseInt(checkbox.closest('tr').querySelector('.firm-name').id);
+            firmyIds.push(firmId);
         }
     });
 
-    const idsData = JSON.stringify(ids);
+    var data = {
+        listPrintFirm: firmyIds,
+        command: 0
+        }
 
-    /*
-    const xhttp = new XMLHttpRequest();
-    console.log(idsData);
-    xhttp.setRequestHeader("Content-type", "application/json");
 
-    var params = "{: '" + idsData + "'}";
-    xhttp.open("POST", "/", true);
-    */
+    fetch('/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // handle the response
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
 
-    // - - -
-    var xhr = new XMLHttpRequest();
-    var url = "";
-    xhr.open("POST", url, true);
-
-    let data = `{
-        "listPrintFirm": ` + idsData
-        + `}`;
-
-    xhr.send(data);
-
-    ids.length = 0;
-    
+    firmyIds.length = 0;
 }
