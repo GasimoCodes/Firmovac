@@ -61,19 +61,36 @@ function postDeleteFirm() {
 
 //AJAX POST ID firms
 function postIdFirm() {
+
     checkboxes.forEach(function (checkbox) {
         if (checkbox.checked) {
             var id = parseInt(checkbox.closest('tr').querySelector('.firm-name').id);
             ids.push(id);
         }
     });
-    const xhttp = new XMLHttpRequest();
+
     const idsData = JSON.stringify(ids);
+
+    /*
+    const xhttp = new XMLHttpRequest();
     console.log(idsData);
-    xhttp.open("POST", "/", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-    if (ids.length > 0) {
-        xhttp.send(idsData);
-    }
+
+    var params = "{: '" + idsData + "'}";
+    xhttp.open("POST", "/", true);
+    */
+
+    // - - -
+    var xhr = new XMLHttpRequest();
+    var url = "";
+    xhr.open("POST", url, true);
+
+    let data = `{
+        "listPrintFirm": ` + idsData
+        + `}`;
+
+    xhr.send(data);
+
     ids.length = 0;
+    
 }

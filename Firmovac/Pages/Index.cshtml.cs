@@ -25,6 +25,9 @@ namespace Firmovac.Pages
         [BindProperty]
         public int[] listRemoveFirm { get; set; }
 
+        [BindProperty]
+        public int[] listPrintFirm { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -64,6 +67,7 @@ namespace Firmovac.Pages
         /// <summary>
         /// 
         /// </summary>
+        [HttpPost]
         public void OnPost()
         {
             using (FirmaDbContext dBContext = new FirmaDbContext())
@@ -73,6 +77,13 @@ namespace Firmovac.Pages
                 {
                     dBContext.Firms.Where(c => (listRemoveFirm.Contains(c.Id))).ExecuteDelete();
                 }
+
+                // If we received a remove request, remove all Firms with IDs based on listRemoveFirm
+                if (listPrintFirm != null)
+                {
+                    dBContext.Firms.Where(c => (listRemoveFirm.Contains(c.Id))).ExecuteDelete();
+                }
+
             }
         }
     }
