@@ -46,22 +46,8 @@ function showSelectedRows() {
     }
 }
 
-//AJAX pro POST smazání firem
-function postDeleteFirm() {
-    const xhttp = new XMLHttpRequest();
-    const idsData = JSON.stringify(ids);
-    console.log(idsData);
-    xhttp.open("POST", "/", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    if (ids.length > 0) {
-        xhttp.send(idsData);
-    }
-    ids.length = 0;
-}
-
 //AJAX POST ID firms
-function postIdFirm() {
-
+function postIdFirm(tagName) {
     var firmyIds = [];
 
     checkboxes.forEach(function (checkbox) {
@@ -70,12 +56,23 @@ function postIdFirm() {
             firmyIds.push(firmId);
         }
     });
-
     var data = {
         listPrintFirm: firmyIds,
         command: 0
+    }
+    console.log(data.listPrintFirm);
+    //kontrola zda je vybrána funkce delete nebo export
+    var elements = document.getElementsByTagName(tagName);
+    for (var i = 0; i < elements.length; i++) {
+        var element = elements[i];
+        if (element.className.indexOf('deleteFunc') >= 0) {
+            data.command = 1;
+            break;
+        } else if (element.className.indexOf('exportFunc') >= 0) {
+            data.command = 0;
+            break;
         }
-
+    }
 
     fetch('/', {
         method: 'POST',
@@ -93,6 +90,6 @@ function postIdFirm() {
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);
         });
-
+    console.log(data);
     firmyIds.length = 0;
 }
