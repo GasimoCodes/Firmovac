@@ -47,7 +47,7 @@ function showSelectedRows() {
 }
 
 //AJAX POST ID firms
-function postIdFirm(tagName) {
+function postIdFirm(arg) {
     var firmyIds = [];
 
     checkboxes.forEach(function (checkbox) {
@@ -58,21 +58,9 @@ function postIdFirm(tagName) {
     });
     var data = {
         listPrintFirm: firmyIds,
-        command: 0
+        command: arg
     }
     console.log(data.listPrintFirm);
-    //kontrola zda je vybrána funkce delete nebo export
-    var elements = document.getElementsByTagName(tagName);
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
-        if (element.className.indexOf('deleteFunc') >= 0) {
-            data.command = 1;
-            break;
-        } else if (element.className.indexOf('exportFunc') >= 0) {
-            data.command = 0;
-            break;
-        }
-    }
 
     fetch('/', {
         method: 'POST',
