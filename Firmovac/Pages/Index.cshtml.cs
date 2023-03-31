@@ -90,20 +90,28 @@ namespace Firmovac.Pages
                                 string csv = Utils.generateCSVReport(firms);
                                 // Send info about this to client
 
+                                Response.Clear();
+                                this.HttpContext.Response.StatusCode = 200;
+                                this.HttpContext.Response.ContentType = "application/json";
+                                this.HttpContext.Response.WriteAsync(@"{""}").Wait();
                                 break;
                             }
                         // Delete
                         case 1:
                             {
-                                dBContext.Firms.Where(x => firmsIds.Contains(x.Id)).ExecuteDelete();
+                                dBContext.RemoveRange(firms);
+                                this.HttpContext.Response.StatusCode = 200;
                                 break;
                             }
                     }
 
                     dBContext.SaveChanges();
-
                 }
             }
+
+            
+
+            OnGet();
 
         }
     }

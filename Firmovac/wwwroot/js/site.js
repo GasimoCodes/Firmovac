@@ -68,16 +68,25 @@ function postIdFirm(arg) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            // handle the response
+
+    }).then((response) => {
+        if (arg == 1)
+            location.reload();
+
+    }).then((response) => response.json())
+        .then((data) => {
+
+            console.log("Success:", data);
+
         })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
+        .catch((error) => {
+            console.error("Error:", error);
         });
+
     console.log(data);
     firmyIds.length = 0;
+
+
+
+
 }
