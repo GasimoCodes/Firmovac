@@ -1,4 +1,5 @@
 ﻿using Firmovac.DataDefinitions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Firmovac
 {
@@ -20,6 +21,10 @@ namespace Firmovac
             return dBContext.FirmaSources.ToArray();
         }
 
+        public static Firma[] getFirmsById(FirmaDbContext dBContext, int[] ids)
+        {
+            return dBContext.Firms.Where(x => ids.Contains(x.Id)).Include("Obor").Include("Source").Include(p => p.Contact).ToArray();
+        }
 
     }
 }

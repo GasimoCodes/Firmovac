@@ -78,20 +78,31 @@ namespace Firmovac.Pages
                 int[] firmsIds = jO["listPrintFirm"].ToObject<int[]>();
                 int command = jO["command"].ToObject<int>();
 
-                switch(command)
+                using (FirmaDbContext dBContext = new FirmaDbContext())
                 {
-                    // Display CSV
-                    case 0:
-                        {
-                            break;
-                        }
-                    // Delete
-                    case 1:
-                        {
-                            break;
-                        }
-                }
+                    Firma[] firms = FirmaDBRepository.getFirmsById(dBContext, firmsIds);
 
+                    switch (command)
+                    {
+                        // Display CSV
+                        case 0:
+                            {
+                                string csv = Utils.generateCSVReport(firms);
+                                // Send info about this to client
+
+                                break;
+                            }
+                        // Delete
+                        case 1:
+                            {
+                                dBContext.Firms.Where(x => firmsIds.Contains(x.Id)).ExecuteDelete();
+                                break;
+                            }
+                    }
+
+                    dBContext.SaveChanges();
+
+                }
             }
 
         }
