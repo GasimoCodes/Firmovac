@@ -91,7 +91,7 @@ namespace Firmovac.Pages
                                 // Send info about this to client
 
                                 Response.Clear();
-                                this.HttpContext.Response.StatusCode = 200;
+                                this.HttpContext.Response.StatusCode = StatusCodes.Status200OK;
                                 this.HttpContext.Response.ContentType = "application/json";
                                 this.HttpContext.Response.WriteAsync(@"{""}").Wait();
                                 break;
@@ -100,7 +100,7 @@ namespace Firmovac.Pages
                         case 1:
                             {
                                 dBContext.RemoveRange(firms);
-                                this.HttpContext.Response.StatusCode = 200;
+                                this.HttpContext.Response.StatusCode = StatusCodes.Status200OK;
                                 break;
                             }
                     }
@@ -108,11 +108,9 @@ namespace Firmovac.Pages
                     dBContext.SaveChanges();
                 }
             }
-
             
 
-            OnGet();
-
+            
         }
     }
 }
