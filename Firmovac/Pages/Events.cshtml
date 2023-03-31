@@ -11,23 +11,20 @@
 <!--Musí se upravit -->
 
 <form method="GET" action="/Events">
-
-    <!-- Filter -->
-    <input class="form-check-input" asp-for="showOldEvents">
-
-    <div class="pt-2 flex-row justify-content-end d-flex gap-2">
-        <button type="submit" class="btn btn-primary">Filter</button>
+    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" asp-for="showOldEvents">
+        <label class="btn btn-outline-dark" for="btncheck1">Předchozí Eventy</label>
+        <button type="submit" class="btn btn-outline-dark">Filtr</button>
     </div>
+</form>
 
-    </form>
-
-    <!-- Table -->
-    <table class="table table-hover">
-        <tr>
-            <th>Datum přídání</th>
-            <th>Název Firmy</th>
-        </tr>
-        @if(Model.firmaEventy != null)
+<!-- Table -->
+<table class="table table-hover">
+    <tr>
+        <th>Datum přídání</th>
+        <th>Název Firmy</th>
+    </tr>
+    @if (Model.firmaEventy != null)
         foreach (var fS in Model.firmaEventy)
         {
             <tr>
@@ -36,5 +33,5 @@
             </tr>
         }
 
-    </table>
+</table>
 
