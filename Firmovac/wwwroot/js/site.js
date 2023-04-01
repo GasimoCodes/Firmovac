@@ -73,14 +73,20 @@ function postIdFirm(arg) {
         if (arg == 1)
             location.reload();
 
-    }).then((response) => response.json())
-        .then((data) => {
+        return response.blob();
 
-            console.log("Success:", data);
-
-        })
-        .catch((error) => {
-            console.error("Error:", error);
+    }).then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'data.csv';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
         });
 
     console.log(data);

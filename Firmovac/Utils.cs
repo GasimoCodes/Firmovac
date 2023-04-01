@@ -1,6 +1,9 @@
-﻿using Firmovac.DataDefinitions;
+﻿using CsvHelper;
+using Firmovac.DataDefinitions;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using System.Net.Mail;
+using CsvHelper.Configuration;
 
 namespace Firmovac
 {
@@ -23,8 +26,15 @@ namespace Firmovac
 
         public static string generateCSVReport(Firma[] firms)
         {
-
-            return "";
+            string result;
+            using (var writer = new StringWriter())
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.Context.RegisterClassMap<FirmaCsvMap>();
+                csv.WriteRecords(firms);
+                result = writer.ToString();
+            }
+            return result;
         }
 
 

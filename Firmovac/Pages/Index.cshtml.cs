@@ -68,7 +68,7 @@ namespace Firmovac.Pages
 
 
         [HttpPost]
-        public void OnPost([FromBody] Object data)
+        public IActionResult OnPost([FromBody] Object data)
         {
             // Access the parameters here
             if (data != null)
@@ -91,9 +91,14 @@ namespace Firmovac.Pages
                                 // Send info about this to client
 
                                 Response.Clear();
-                                this.HttpContext.Response.StatusCode = StatusCodes.Status200OK;
-                                this.HttpContext.Response.ContentType = "application/json";
-                                this.HttpContext.Response.WriteAsync(@"{""}").Wait();
+
+                                return new ContentResult
+                                {
+                                    ContentType = "text/csv",
+                                    StatusCode = 200,
+                                    Content = csv,
+                                };
+
                                 break;
                             }
                         // Delete
@@ -108,9 +113,10 @@ namespace Firmovac.Pages
                     dBContext.SaveChanges();
                 }
             }
-            
 
-            
+            return new JsonResult(new { message = "Success!" });
+
+
         }
     }
 }
