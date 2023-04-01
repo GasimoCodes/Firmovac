@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Hosting;
 
 namespace Firmovac
 {
@@ -7,6 +8,9 @@ namespace Firmovac
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            
+            // Load site config
+            Utils.LoadConfig();
 
             // Add services to the container.
             builder.Services.AddRazorPages().AddRazorPagesOptions(o =>
@@ -29,14 +33,17 @@ namespace Firmovac
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthorization();
-            
             app.MapRazorPages();
+
+            // Save configs on exit
+            app.Lifetime.ApplicationStopped.Register(() => {
+                Utils.SaveConfig();
+            });
 
             app.Run();
         }
+
     }
 }

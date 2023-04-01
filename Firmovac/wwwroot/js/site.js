@@ -70,9 +70,12 @@ function postIdFirm(arg) {
         body: JSON.stringify(data)
 
     }).then((response) => {
-        if (arg == 1)
+        if (arg == 1) {
             location.reload();
-
+            return;
+        }
+            
+            
         return response.blob();
 
     }).then(blob => {

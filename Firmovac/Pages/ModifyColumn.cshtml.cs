@@ -1,7 +1,6 @@
 ﻿using Firmovac.DataDefinitions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Firmovac.DataDefinitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

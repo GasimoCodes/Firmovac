@@ -4,11 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using System.Net.Mail;
 using CsvHelper.Configuration;
+using Newtonsoft.Json;
 
 namespace Firmovac
 {
     public class Utils
     {
+        public static SiteConfig siteConfig = new SiteConfig();
+
 
 
         public static async Task OnPostSendEmail(string from, string to, string subject, string body)
@@ -36,6 +39,42 @@ namespace Firmovac
             }
             return result;
         }
+
+        public static void SaveConfig()
+        {
+            string jsonString = JsonConvert.SerializeObject(siteConfig);
+
+            // write the string to a file
+            using (StreamWriter writer = new StreamWriter("FirmovacConfig.json"))
+            {
+                writer.Write(jsonString);
+            }
+        }
+
+        public static void LoadConfig()
+        {
+            // File doesnt exist
+            if (!File.Exists("FirmovacConfig.json"))
+            {
+                SaveConfig();
+            }
+
+            using (StreamReader reader = new StreamReader("FirmovacConfig.json"))
+            {
+                string json = reader.ReadToEnd();
+                try
+                {
+                    siteConfig = JsonConvert.DeserializeObject<SiteConfig>(json);
+                }
+                catch(Exception ex)
+                {
+                    SaveConfig();
+                    throw (ex);
+                }
+
+            }
+        }
+
 
 
     }

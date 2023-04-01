@@ -26,5 +26,7 @@ namespace Firmovac
             return dBContext.Firms.Where(x => ids.Contains(x.Id)).Include("Obor").Include("Source").Include(q => q.Contact).Include(q => q.Events).ToArray();
         }
 
+
+
     }
 }
