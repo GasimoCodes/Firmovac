@@ -1,9 +1,1 @@
-{
-  "DB_IP": "37.120.169.246",
-  "DB_Password": "",
-  "DB_User": "firmovac",
-  "DB_Schema": "crmskchccz",
-  "Admin_Email": "prokop.svacina@gmail.com",
-  "SMTP_Address": null,
-  "SMTP_Password": null
-}
+{"DB_IP":"37.120.169.246","DB_Password":"","DB_User":"firmovac","DB_Schema":"crmskchccz","Admin_Email":"prokop.svacina@gmail.com","SMTP_Address":"10.0.0.1","SMTP_Password":null}

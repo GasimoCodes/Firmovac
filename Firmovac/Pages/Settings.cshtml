@@ -8,10 +8,20 @@
 
     <h2>Email SMTP</h2>
 
-
     <label class="form-label" asp-for="SMTP_Address" for="SMTP_Address"></label>
     <input class="form-control" id="SMTP_Address" asp-for="SMTP_Address">
 
+    <label class="form-label" asp-for="SMTP_Password" for="SMTP_Password"></label>
+    <input class="form-control" id="SMTP_Password" asp-for="SMTP_Password">
+
+    <label class="form-label" asp-for="Admin_Mail" for="Admin_Mail"></label>
+    <input class="form-control" id="Admin_Mail" asp-for="Admin_Mail">
+
+
+    <div class="pt-2 flex-row justify-content-end d-flex gap-2">
+        <a href="/" class="btn btn-light">Zpět</a>
+        <button type="submit" class="btn btn-primary">Uložit</button>
+    </div>
 
 </form>
 
