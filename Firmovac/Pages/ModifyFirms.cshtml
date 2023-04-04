@@ -85,11 +85,11 @@
 			<div class="col-sm">
 				<label for="kontaktRow">Kontakt</label>
 
-				<button type="button" class="btn btn-light float-end p-0 add-contact-btn">
+				<button id="addContactBtn" type="button" class="btn btn-light float-end p-0 add-contact-btn">
 					<i class="bi bi-plus-lg"></i>
 				</button>
 
-				<div class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
+				<div id="accordionCard" class="card p-3 d-flex flex-wrap gap-3 flex-ro" style="flex-direction:inherit!important">
 
 					@if (Model.firmaModify.Contact != null)
 						foreach (var kontakt in Model.firmaModify.Contact)
@@ -102,12 +102,11 @@
 									<button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_@kontakt.Id" aria-expanded="false" aria-controls="collapseOne">
 										<div class="flex-row align-items-center d-inline-flex">
 
-											<a class="btn">
+											<a id="deleteContact_@kontakt.Id" class="btn">
 												<i class="bi bi-x-lg"></i>
 											</a>
 
 											@kontakt.Name
-
 
 										</div>
 									</button>

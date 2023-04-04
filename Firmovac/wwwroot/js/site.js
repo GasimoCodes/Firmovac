@@ -97,42 +97,41 @@ function postIdFirm(arg) {
 
 }
 
+function addContact() {
+    // najděte poslední kontakt v rámci accordionu a zjistěte jeho id
+    const lastContact = document.querySelector('#accordionCard .accordion:last-child');
+    const lastContactId = parseInt(lastContact.getAttribute('id').match(/\d+/g));
 
-function addNewAccordion() {
-    const card = document.getElementById('accordionCard');
-    const newIndex = card.children.length;
-
-    const newAccordion = `
-    <div class="accordion mt-1 w-100" id="accord_contact_${newIndex}">
+    // vytvořte nový kontakt
+    const newContactId = lastContactId + 1;
+    const newContact = `
+    <div class="accordion mt-1 w-100" id="accord_contact_${newContactId}">
       <div class="accordion-item rounded-4 shadow-sm p-1">
-        <button class="own-p-tag px-3  accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_${newIndex}" aria-expanded="false" aria-controls="collapseOne">
+        <button class="own-p-tag px-3 accordion-button rounded-3 btn bg-transparent shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#accord_contactItem_${newContactId}" aria-expanded="false" aria-controls="collapseOne">
           <div class="flex-row align-items-center d-inline-flex">
-            <a class="btn"><i class="bi bi-x-lg"></i></a>
-            <span>Kontakt ${newIndex + 1}</span>
+            <a id="deleteContact_${newContactId}" class="btn">
+              <i class="bi bi-x-lg"></i>
+            </a>
+            Kontakt
           </div>
         </button>
-        <div id="accord_contactItem_${newIndex}" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_${newIndex}">
-          <input name="Kontakty[${newIndex}].Id" type="hidden" value="0">
-          <label for="kontaktName_${newIndex}">Name</label>
-          <input name="Kontakty[${newIndex}].Name" type="text" class="form-control" id="kontaktName_${newIndex}" placeholder="Název">
-          <label for="kontaktEmail_${newIndex}">Email</label>
-          <input name="Kontakty[${newIndex}].Email" type="email" class="form-control" id="kontaktEmail_${newIndex}" placeholder="Email">
-          <label for="kontaktPhone_${newIndex}">Tel</label>
-          <input name="Kontakty[${newIndex}].Phone" type="tel" class="form-control" id="kontaktPhone_${newIndex}" placeholder="Tel">
+        <div id="accord_contactItem_${newContactId}" class="accordion-collapse rounded-4 collapse p-3" aria-labelledby="headingOne" data-bs-parent="#accord_contact_${newContactId}">
+          <input name="Kontakty[${newContactId}].Id" type="hidden" value="0">
+          <label for="kontaktMail">Name</label>
+          <input name="Kontakty[${newContactId}].Name" type="text" class="form-control" id="kontakt_x_mail" placeholder="Název">
+          <label for="kontaktMail">Email</label>
+          <input name="Kontakty[${newContactId}].Email" type="email" class="form-control" id="kontakt_x_mail" placeholder="Email">
+          <label for="kontaktMail">Tel</label>
+          <input name="Kontakty[${newContactId}].Phone" type="tel" class="form-control" id="kontakt_x_mail" placeholder="Tel">
         </div>
       </div>
     </div>
   `;
 
-    // Přidat nový element na konec seznamu
-    card.innerHTML += newAccordion;
-
-    // Aktualizovat počet kontaktů v labelu
-    const kontaktLabel = document.querySelector('label[for="kontaktRow"]');
-    const kontaktCount = card.children.length;
-    kontaktLabel.innerText = `Kontakt (${kontaktCount})`;
+    // přidejte nový kontakt do accordionu
+    const accordionCard = document.querySelector('#accordionCard');
+    accordionCard.innerHTML += newContact;
 }
 
-// Přidat nový kontakt po kliknutí na tlačítko plus
-const addContactBtn = document.querySelector('.add-contact-btn');
-addContactBtn.addEventListener('click', addNewAccordion);
+const addContactBtn = document.getElementById("addContactBtn");
+addContactBtn.addEventListener("click", addContact);
