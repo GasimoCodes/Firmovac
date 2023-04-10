@@ -133,5 +133,19 @@ function addContact() {
     accordionCard.innerHTML += newContact;
 }
 
-const addContactBtn = document.getElementById("addContactBtn");
-addContactBtn.addEventListener("click", addContact);
+// funkce pro mazání kontaktu
+function deleteContact() {
+    var kontaktId = this.id.split("_")[1];
+    var kontakt = document.getElementById("contact_" + kontaktId);
+    var accord = document.getElementById("accord_contact_" + kontaktId);
+    kontakt.remove();
+    accord.remove();
+}
+
+// najdeme všechna tlačítka pro mazání kontaktu
+var deleteButtons = document.querySelectorAll(".btn[id^='deleteContact_']");
+
+// přidáme posluchač kliknutí na každé tlačítko
+deleteButtons.forEach(function (btn) {
+    btn.addEventListener("click", deleteContact);
+});
