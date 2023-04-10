@@ -363,4 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # json - db config
-.Firmovac/FirmovacConfig.json
+./Firmovac/FirmovacConfig.json
